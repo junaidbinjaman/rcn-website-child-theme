@@ -34,7 +34,7 @@ Make sure to backup your changes to prevent loss of customizations during update
 
 All rights reserved. This theme is the property of RCN and cannot be used or distributed without explicit permission from RCN.
 
-![License](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cc-by_new_white.svg/88px-Cc-by_new_white.svg.png)
+![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-blue)
 
 ## Changelog
 

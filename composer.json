@@ -1,0 +1,22 @@
+{
+    "name": "junaidbinjaman/rcn-website-child-theme-main",
+    "autoload": {
+        "psr-4": {
+            "Junaidbinjaman\\RcnWebsiteChildThemeMain\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "junaidbinjaman",
+            "email": "me@junaidbinjaman.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.0"
+    }
+}

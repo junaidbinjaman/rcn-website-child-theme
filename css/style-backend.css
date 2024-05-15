@@ -1,0 +1,45 @@
+/*
+Backend CSS RCN
+Author: Gabriel Caroprese
+Date: 08/24/2022
+*/
+.hidden{
+	display: none;
+}  
+#sponsor_uploader_wrapper button, #header_uploader_wrapper button{
+	line-height: 1;
+}
+#sponsor_uploader label {
+    padding: 20px;
+    border: 1px solid #ccc;
+    display: block;
+}
+#sponsor_uploader input[type=button], #header_uploader input[type=button]{
+	margin-bottom: 7px;
+}
+.delete_resource{
+    position: relative;
+    top: 2px;
+}
+.resource-row {
+    padding: 5px 0;
+}
+#add_resource{
+	margin-top: 20px;
+}
+#ik_associate_guest_podcast{
+	display: none! important;
+}
+#ik_author_selector_wrapper{
+	display: block;
+	width: 100%;
+}
+#ik_author_selector_wrapper button{
+	float: left;
+	cursor: pointer;
+}
+#ik_author_selector_wrapper .select2-container {
+	width: 183px! important;
+	display: block;
+	margin-bottom: 7px;
+}
