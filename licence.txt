@@ -1,0 +1,25 @@
+RCN Website Child Theme License
+
+All rights reserved.
+
+This child theme (the "Theme") is a proprietary product developed specifically for the RCN website. The use of this Theme is restricted as follows:
+
+1. **Ownership and Rights**: The Theme is the exclusive property of RCN. All intellectual property rights in the Theme are owned by RCN.
+
+2. **Permitted Use**: This Theme is intended solely for use on the RCN website. No other use of this Theme is permitted without the explicit written consent of RCN.
+
+3. **Prohibited Use**: 
+   - You may not distribute, sublicense, sell, or otherwise transfer this Theme or any derivative works thereof to any third party.
+   - You may not modify, reverse engineer, decompile, or disassemble this Theme except to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation.
+
+4. **Termination**: Any unauthorized use of this Theme will result in the automatic termination of your rights under this license. Upon termination, you must destroy all copies of the Theme in your possession.
+
+5. **Disclaimer of Warranties**: The Theme is provided "as is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall RCN be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Theme or the use or other dealings in the Theme.
+
+6. **Governing Law**: This license shall be governed by and construed in accordance with the laws of the jurisdiction in which RCN is located, without regard to its conflict of law provisions.
+
+For any questions or to request permission for use, please contact RCN at [Your Contact Information].
+
+---
+
+© [Year] RCN. All rights reserved.
