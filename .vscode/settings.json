@@ -2,7 +2,10 @@
     "cSpell.words": [
         "Astra",
         "Jaman",
-        "Junaid"
+        "Junaid",
+        "phpcs",
+        "unslash",
+        "woocommerce"
     ],
 
    // Place your settings in this file to overwrite the default settings
