@@ -1,0 +1,53 @@
+/* The cart page style sheet */
+
+/* ===================
+Cart header
+====================== */
+
+.rcn-child-cart-continue-shopping-btn {
+    display: inline-block;
+}
+.rcn-child-cart-continue-shopping-btn a {
+    padding: 0px !important;
+    background: transparent;
+    font-size: 18px !important;
+    text-transform: capitalize !important;
+    display: flex;
+    align-items: center;
+    font-weight: 600 !important;
+    cursor: pointer;
+}
+
+.rcn-child-cart-continue-shopping-btn a i {
+    font-size: 30px;
+    margin-left: -9px;
+}
+
+.rcn-child-cart-continue-shopping-btn:hover {
+    transform: none !important;
+    background: transparent !important;
+}
+
+.rcn-child-cart-secondary-header {
+    color: #1e1e1e;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px !important;
+    text-transform: capitalize !important;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rcn-child-cart-paragraph {
+    color: rgba(0, 0, 0, 0.5);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
+    margin-top: 5px;
+}
+
+.rcn-child-cart-header-divider {
+    margin: 25px 0px !important;
+}

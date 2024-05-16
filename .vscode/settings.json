@@ -2,11 +2,13 @@
     "cSpell.words": [
         "ABSPATH",
         "Astra",
+        "elementor",
         "Jaman",
         "Junaid",
         "phpcs",
         "unslash",
-        "woocommerce"
+        "woocommerce",
+        "yourtheme"
     ],
 
    // Place your settings in this file to overwrite the default settings

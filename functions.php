@@ -31,6 +31,23 @@ function your_theme_enqueue_styles() {
 		array( $parent_style ),
 		wp_get_theme()->get( 'Version' )
 	);
+
+	wp_enqueue_style(
+		'rcn-child-cart',
+		get_stylesheet_directory_uri() . '/css/woocommerce/cart/cart.css',
+		array(),
+		fileatime(
+			get_stylesheet_directory() . '/css/woocommerce/cart/cart.css'
+		),
+		'all'
+	);
+
+	/**
+	 * Fixes the elementor mini cart popup issue
+	 *
+	 * The popup doesn't show anything is the wc cart fragment is not enqueued properly
+	 */
+	wp_enqueue_script( 'wc-cart-fragments' );
 }
 
 add_action( 'wp_enqueue_scripts', 'your_theme_enqueue_styles' );
