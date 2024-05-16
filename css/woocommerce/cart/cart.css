@@ -51,3 +51,132 @@ Cart header
 .rcn-child-cart-header-divider {
     margin: 25px 0px !important;
 }
+
+/* ========================
+Cart total styles
+=========================== */
+
+.rcn-child-cart-totals {
+    background: #444e5a;
+    border-radius: 8px !important;
+    color: white;
+    border: none;
+}
+
+.rcn-child-cart-coupon-wrapper {
+    padding: 30px 0px;
+}
+
+.rcn-child-cart-coupon-wrapper form {
+    display: flex   ;
+}
+
+.rcn-child-cart-coupon-wrapper input {
+    width: 218px;
+    height: 40px;
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+}
+
+.rcn-child-cart-coupon-wrapper input[type='submit'] {
+    width: 135px;
+    height: 40px;
+    padding: 0px 15px !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    color: white !important;
+    margin-left: -1px;
+    background-color: #006CFA;
+    font-size: 12px !important;
+}
+
+.rcn-child-cart-coupon-wrapper input[type='submit']:hover {
+    background-color: #006CFA !important;
+}
+
+.rcn-child-cart-total-primary-title {
+    color: #fefcfc !important;
+    font-size: 22px !important;
+    text-transform: capitalize !important;
+    font-weight: 600 !important;
+    line-height: 29px !important;
+    background: transparent !important;
+    margin: 0px !important;
+    padding: 10px 0px !important;
+    border-color: #6b6b6b !important;
+}
+
+.woocommerce-cart .cart-collaterals .cart_totals tr th,
+.woocommerce-cart .cart-collaterals .cart_totals tr td {
+    border: none;
+    padding: 0px;
+    color: #fefcfc;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.rcn-child-cart-subtotal th,
+.rcn-child-cart-subtotal td {
+    padding-top: 15px !important;
+    padding-bottom: 7px !important;
+}
+
+.rcn-child-cart-totals {
+    width: 394px !important;
+}
+
+.rcn-child-shop-table {
+    border: none !important;
+}
+
+.rcn-child-shop-table td {
+    text-align: end;
+}
+
+.rcn-child-shop-table a.woocommerce-remove-coupon {
+    display: none;
+}
+
+.rcn-child-tax-total th,
+.rcn-child-tax-total td {
+    padding-top: 6px !important;
+    padding-bottom: 15px !important;
+}
+
+.rcn-child-order-total {
+    border-top: 1px solid wheat;
+}
+
+.rcn-child-order-total th, 
+.rcn-child-order-total td {
+    padding-top: 10px !important;
+    border-top: 1px solid #666769 !important;
+}
+
+.rcn-child-order-total th, 
+.rcn-child-order-total td bdi {
+    font-size: 18px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
+}
+
+.rcn-child-proceed-to-checkout-btn a {
+    width: 350px;
+    height: 50px;
+    background: #006CFA !important;
+    padding: 8px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    transition: all ease-in-out 0.1s;
+}
+
+.rcn-child-proceed-to-checkout-btn a:hover {
+    color: white !important;
+}
+
+.rcn-child-proceed-to-checkout-btn a:active {
+    transform: scale(0.9);
+}

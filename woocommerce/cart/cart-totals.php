@@ -18,22 +18,29 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
-<div class="cart_totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
+<div class="cart_totals rcn-child-cart-totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-	<h2><?php esc_html_e( 'Cart totals', 'woocommerce' ); ?></h2>
+	<div class="rcn-child-cart-coupon-wrapper">
+		<form>
+			<input type="text" placeholder="Insert discount code here">
+			<input type="submit" value="APPLY DISCOUNT">
+		</form>
+	</div>
 
-	<table cellspacing="0" class="shop_table shop_table_responsive">
+	<h2 class="rcn-child-cart-total-primary-title"><?php esc_html_e( 'Order Details', 'woocommerce' ); ?></h2>
 
-		<tr class="cart-subtotal">
+	<table cellspacing="0" class="shop_table rcn-child-shop-table shop_table_responsive">
+
+		<tr class="cart-subtotal rcn-child-cart-subtotal">
 			<th><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
 			<td data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
+				<th><?php esc_html_e( 'Discount', 'woocommerce' ); ?></th>
 				<td data-title="<?php echo esc_attr( wc_cart_totals_coupon_label( $coupon, false ) ); ?>"><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
 			</tr>
 		<?php endforeach; ?>
@@ -42,7 +49,7 @@ defined( 'ABSPATH' ) || exit;
 
 			<?php do_action( 'woocommerce_cart_totals_before_shipping' ); ?>
 
-			<?php wc_cart_totals_shipping_html(); ?>
+			<?php // wc_cart_totals_shipping_html() phpcs:ignore. ?>
 
 			<?php do_action( 'woocommerce_cart_totals_after_shipping' ); ?>
 
@@ -83,7 +90,7 @@ defined( 'ABSPATH' ) || exit;
 				}
 			} else {
 				?>
-				<tr class="tax-total">
+				<tr class="tax-total rcn-child-tax-total">
 					<th><?php echo esc_html( WC()->countries->tax_or_vat() ) . $estimated_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></th>
 					<td data-title="<?php echo esc_attr( WC()->countries->tax_or_vat() ); ?>"><?php wc_cart_totals_taxes_total_html(); ?></td>
 				</tr>
@@ -94,7 +101,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
-		<tr class="order-total">
+		<tr class="order-total rcn-child-order-total">
 			<th><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
 			<td data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
@@ -103,7 +110,7 @@ defined( 'ABSPATH' ) || exit;
 
 	</table>
 
-	<div class="wc-proceed-to-checkout">
+	<div class="wc-proceed-to-checkout rcn-child-proceed-to-checkout-btn">
 		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 	</div>
 
