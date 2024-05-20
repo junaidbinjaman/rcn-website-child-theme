@@ -123,6 +123,12 @@ Cart total styles
     padding-bottom: 7px !important;
 }
 
+
+.rcn-child-cart-discount th,
+.rcn-child-cart-discount td {
+    padding-bottom: 7px !important;
+}
+
 .rcn-child-cart-totals {
     width: 394px !important;
 }
@@ -141,7 +147,6 @@ Cart total styles
 
 .rcn-child-tax-total th,
 .rcn-child-tax-total td {
-    padding-top: 6px !important;
     padding-bottom: 15px !important;
 }
 
@@ -179,4 +184,8 @@ Cart total styles
 
 .rcn-child-proceed-to-checkout-btn a:active {
     transform: scale(0.9);
+}
+
+.woocommerce-js ul#shipping_method .amount {
+    font-weight: 400;
 }
