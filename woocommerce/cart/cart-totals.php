@@ -21,11 +21,15 @@ defined( 'ABSPATH' ) || exit;
 <div class="cart_totals rcn-child-cart-totals <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
+	<?php $rcn_cart_url = get_the_permalink( get_the_ID() ); ?>
 
 	<div class="rcn-child-cart-coupon-wrapper">
-		<form>
-			<input type="text" placeholder="Insert discount code here">
+		<form method="POST" action="<?php echo esc_html( $rcn_cart_url ); ?>">
+			<input type="text" name="rcn-child-cart-coupon" placeholder="Insert discount code here">
 			<input type="submit" value="APPLY DISCOUNT">
+
+			<input type="hidden" name="rcn-child-cart-coupon-nonce" value="<?php echo esc_attr( wp_create_nonce( 'rcn-child-cart-coupon-nonce' ) ); ?>">
+			<input type="hidden" name="action" value="rcn-child-cart-coupon">
 		</form>
 	</div>
 

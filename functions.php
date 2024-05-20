@@ -240,3 +240,31 @@ function remove_wc_marketing_menu( $features ) {
 }
 
 add_filter( 'woocommerce_admin_features', 'remove_wc_marketing_menu' );
+
+/**
+ * Cart coupon handler
+ *
+ * @return void
+ */
+function foobar() {
+	$coupon_code = isset( $_POST['rcn-child-cart-coupon'] ) ? sanitize_text_field( wp_unslash( $_POST['rcn-child-cart-coupon'] ) ) : '';
+
+	if ( ! isset( $_POST['action'] ) || 'rcn-child-cart-coupon' !== $_POST['action'] ) {
+		return;
+	}
+
+	if (
+		! isset( $_POST['rcn-child-cart-coupon-nonce'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['rcn-child-cart-coupon-nonce'] ) ), 'rcn-child-cart-coupon-nonce' )
+	) {
+		return;
+	}
+
+	if ( WC()->cart->has_discount( $coupon_code ) ) {
+		return;
+	}
+
+	WC()->cart->apply_coupon( $coupon_code );
+}
+
+add_action( 'init', 'foobar' );
