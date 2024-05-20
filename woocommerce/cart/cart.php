@@ -24,6 +24,7 @@ $shop_page_id        = get_option( 'woocommerce_shop_page_id' );
 $shop_page_permalink = get_the_permalink( $shop_page_id );
 ?>
 
+<form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 <div>
 	<div class="rcn-child-cart-continue-shopping-btn">
 		<a href="<?php echo esc_html( $shop_page_permalink ); ?>" class="rcn-child-cart-continue-shopping-btn">
@@ -33,12 +34,10 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 	</div>
 	<hr class="rcn-child-cart-header-divider" />
 	<h3 class="rcn-child-cart-secondary-header">Shopping cart</h3>
-	<p class="rcn-child-cart-paragraph">You have 3 item in your cart</p>
+	<p class="rcn-child-cart-paragraph">You have <?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?> items in your cart</p>
 </div>
-
-<form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
-	
+
 	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
 		<tbody>
 			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
@@ -67,14 +66,13 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
 						if ( ! $product_permalink ) {
-							echo $thumbnail; // PHPCS:ignore
+							echo $thumbnail; // PHPCS:ignore.
 						} else {
-							printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS:ignore
+							printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS:ignore.
 						}
 						?>
-
 						</td>
-						
+
 						<td class="product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
 						<?php
 						if ( ! $product_permalink ) {
@@ -89,21 +87,16 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 						}
 
 						do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
+						echo wp_kses_post( sprintf( '<p>%s</p>', 'Extra cheese and toping' ) );
 
 						// Meta data.
-						echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS:ignore
+						echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS:ignore.
 
 						// Backorder notification.
 						if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
 							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
 						}
 						?>
-						</td>
-
-						<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
-							<?php
-								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS:ignore
-							?>
 						</td>
 
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
@@ -128,13 +121,30 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 							false
 						);
 
-						echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS:ignore
+						echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS:ignore.
 						?>
 						</td>
 
 						<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
 							<?php
-								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS:ignore
+								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS:ignore.
+							?>
+						</td>
+
+						<td class="product-remove">
+							<?php
+								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									'woocommerce_cart_item_remove_link',
+									sprintf(
+										'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
+										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+										/* translators: %s is the product name */
+										esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
+										esc_attr( $product_id ),
+										esc_attr( $_product->get_sku() )
+									),
+									$cart_item_key
+								);
 							?>
 						</td>
 					</tr>
@@ -145,11 +155,18 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 
+			<tr style="display: none;">
+				<td colspan="6" class="actions">
+					<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+				</td>
+			</tr>
+
 			<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 		</tbody>
 	</table>
 	<?php do_action( 'woocommerce_after_cart_table' ); ?>
 </form>
+
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 

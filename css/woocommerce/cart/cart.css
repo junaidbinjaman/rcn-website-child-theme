@@ -68,7 +68,7 @@ Cart total styles
 }
 
 .rcn-child-cart-coupon-wrapper form {
-    display: flex   ;
+    display: flex;
 }
 
 .rcn-child-cart-coupon-wrapper input {
@@ -86,12 +86,12 @@ Cart total styles
     border-bottom-left-radius: 0px !important;
     color: white !important;
     margin-left: -1px;
-    background-color: #006CFA;
+    background-color: #006cfa;
     font-size: 12px !important;
 }
 
 .rcn-child-cart-coupon-wrapper input[type='submit']:hover {
-    background-color: #006CFA !important;
+    background-color: #006cfa !important;
 }
 
 .rcn-child-cart-total-primary-title {
@@ -123,7 +123,6 @@ Cart total styles
     padding-bottom: 7px !important;
 }
 
-
 .rcn-child-cart-discount th,
 .rcn-child-cart-discount td {
     padding-bottom: 7px !important;
@@ -154,13 +153,13 @@ Cart total styles
     border-top: 1px solid wheat;
 }
 
-.rcn-child-order-total th, 
+.rcn-child-order-total th,
 .rcn-child-order-total td {
     padding-top: 10px !important;
     border-top: 1px solid #666769 !important;
 }
 
-.rcn-child-order-total th, 
+.rcn-child-order-total th,
 .rcn-child-order-total td bdi {
     font-size: 18px !important;
     font-style: normal !important;
@@ -171,7 +170,7 @@ Cart total styles
 .rcn-child-proceed-to-checkout-btn a {
     width: 350px;
     height: 50px;
-    background: #006CFA !important;
+    background: #006cfa !important;
     padding: 8px !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -188,4 +187,12 @@ Cart total styles
 
 .woocommerce-js ul#shipping_method .amount {
     font-weight: 400;
+}
+
+.woocommerce-js table.shop_table .product-thumbnail img,
+.woocommerce-page table.shop_table .product-thumbnail img {
+    width: auto;
+    max-width: 82px;
+    height: 80px !important;
+    border-radius: 8px;
 }
