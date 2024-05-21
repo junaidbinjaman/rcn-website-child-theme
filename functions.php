@@ -32,7 +32,7 @@ function your_theme_enqueue_styles() {
 		wp_get_theme()->get( 'Version' )
 	);
 
-	wp_enqueue_style(
+	wp_register_style(
 		'rcn-child-cart',
 		get_stylesheet_directory_uri() . '/css/woocommerce/cart/cart.css',
 		array(),
@@ -42,12 +42,26 @@ function your_theme_enqueue_styles() {
 		'all'
 	);
 
+	wp_register_script(
+		'rcn-child-cart-scripts',
+		get_stylesheet_directory_uri() . '/js/woocommerce/cart/cart.js',
+		array( 'jquery' ),
+		fileatime( get_stylesheet_directory() . '/js/woocommerce/cart/cart.js' ),
+		true
+	);
+
 	/**
 	 * Fixes the elementor mini cart popup issue
 	 *
 	 * The popup doesn't show anything is the wc cart fragment is not enqueued properly
 	 */
 	wp_enqueue_script( 'wc-cart-fragments' );
+
+	// Load WC cart scripts and css on cart page only.
+	if ( is_page( wc_get_page_id( 'cart' ) ) ) {
+		wp_enqueue_style( 'rcn-child-cart' );
+		wp_enqueue_script( 'rcn-child-cart-scripts' );
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'your_theme_enqueue_styles' );
@@ -268,3 +282,18 @@ function foobar() {
 }
 
 add_action( 'init', 'foobar' );
+
+add_action(
+	'woocommerce_before_quantity_input_field',
+	function () {
+		echo wp_kses_post( sprintf( '<a class="rch-child-cart-qty-minus-btn">%s</a>', '<span class="dashicons dashicons-minus"></span>' ) );
+	}
+);
+
+add_action(
+	'woocommerce_after_quantity_input_field',
+	function () {
+		echo wp_kses_post( sprintf( '<a class="rch-child-cart-qty-plus-btn">%s</a>', '<span class="dashicons dashicons-plus-alt2"></span>' ) );
+	}
+);
+

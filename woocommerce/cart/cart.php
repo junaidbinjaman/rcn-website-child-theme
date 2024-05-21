@@ -73,7 +73,7 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 						?>
 						</td>
 
-						<td class="product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
+						<td class="product-name rcn-child-cart-items-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
 						<?php
 						if ( ! $product_permalink ) {
 							echo wp_kses_post( $product_name . '&nbsp;' );
@@ -99,7 +99,7 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 						?>
 						</td>
 
-						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
+						<td class="product-quantity rcn-child-cart-item-qty-input" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
 						<?php
 						if ( $_product->is_sold_individually() ) {
 							$min_quantity = 1;
@@ -136,12 +136,13 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									'woocommerce_cart_item_remove_link',
 									sprintf(
-										'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
+										'<a href="%s" class="remove rcn-child-cart-product-remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">%s</a>',
 										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 										/* translators: %s is the product name */
 										esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
 										esc_attr( $product_id ),
-										esc_attr( $_product->get_sku() )
+										esc_attr( $_product->get_sku() ),
+										wp_kses_post( '<span class="dashicons dashicons-trash"></span>' )
 									),
 									$cart_item_key
 								);
