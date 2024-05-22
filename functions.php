@@ -297,3 +297,19 @@ add_action(
 	}
 );
 
+add_action( 'woocommerce_cart_loaded_from_session', 'update_cart_quantity', 20 );
+
+function update_cart_quantity() {
+	$product_id = 14900;
+
+	$cart_item_key = WC()->cart->generate_cart_id( $product_id );
+
+	$cart_contents = WC()->cart->get_cart();
+
+	foreach ( $cart_contents as $key => $values ) {
+		if ( $cart_item_key === $key ) {
+			WC()->cart->set_quantity( $key, 2, true );
+			return;
+		}
+	}
+}
