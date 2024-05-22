@@ -50,6 +50,15 @@ function your_theme_enqueue_styles() {
 		true
 	);
 
+	wp_localize_script(
+		'rcn-child-cart-scripts',
+		'wp_cart_ajax',
+		array(
+			'url'   => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'wc-cart-nonce' ),
+		)
+	);
+
 	/**
 	 * Fixes the elementor mini cart popup issue
 	 *
@@ -227,16 +236,6 @@ function redirect_non_logged_in_users_to_login() {
 add_action( 'template_redirect', 'redirect_non_logged_in_users_to_login' );
 
 /**
- * Remove tag support from wp blog
- *
- * @return void
- */
-function remove_tags_support() {
-	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
-}
-add_action( 'init', 'remove_tags_support' );
-
-/**
  * The function removes the marketing menu of woocommerce
  * on WordPress navbar.
  *
@@ -256,11 +255,20 @@ function remove_wc_marketing_menu( $features ) {
 add_filter( 'woocommerce_admin_features', 'remove_wc_marketing_menu' );
 
 /**
+ * Remove tag support from wp blog
+ *
+ * @return void
+ */
+function remove_tags_support() {
+	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+}
+
+/**
  * Cart coupon handler
  *
  * @return void
  */
-function foobar() {
+function rcn_child_coupon_handler() {
 	$coupon_code = isset( $_POST['rcn-child-cart-coupon'] ) ? sanitize_text_field( wp_unslash( $_POST['rcn-child-cart-coupon'] ) ) : '';
 
 	if ( ! isset( $_POST['action'] ) || 'rcn-child-cart-coupon' !== $_POST['action'] ) {
@@ -281,35 +289,64 @@ function foobar() {
 	WC()->cart->apply_coupon( $coupon_code );
 }
 
-add_action( 'init', 'foobar' );
+/**
+ * This is foobar.
+ *
+ * @return void
+ */
+function foobar() {
+	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'wc-cart-nonce' ) ) {
+		$result = array(
+			'status'  => false,
+			'message' => 'The nonce verification failed',
+		);
 
-add_action(
-	'woocommerce_before_quantity_input_field',
-	function () {
-		echo wp_kses_post( sprintf( '<a class="rch-child-cart-qty-minus-btn">%s</a>', '<span class="dashicons dashicons-minus"></span>' ) );
+		echo wp_json_encode( $result );
+		wp_die();
 	}
-);
 
-add_action(
-	'woocommerce_after_quantity_input_field',
-	function () {
-		echo wp_kses_post( sprintf( '<a class="rch-child-cart-qty-plus-btn">%s</a>', '<span class="dashicons dashicons-plus-alt2"></span>' ) );
-	}
-);
+	$product_id = isset( $_POST['product_id'] ) ? sanitize_text_field( wp_unslash( $_POST['product_id'] ) ) : 0;
+	$quantity   = isset( $_POST['quantity'] ) ? sanitize_text_field( wp_unslash( $_POST['quantity'] ) ) : 0;
+	$cart       = WC()->cart;
 
-add_action( 'woocommerce_cart_loaded_from_session', 'update_cart_quantity', 20 );
+	foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+		if ( intval( $product_id ) === $cart_item['product_id'] ) {
+			$cart->set_quantity( $cart_item_key, $quantity );
 
-function update_cart_quantity() {
-	$product_id = 14900;
+			$result = array(
+				'status'     => true,
+				'product_id' => $product_id,
+				'quantity'   => $quantity,
+				'message'    => 'The quantity is updated successfully',
+			);
 
-	$cart_item_key = WC()->cart->generate_cart_id( $product_id );
-
-	$cart_contents = WC()->cart->get_cart();
-
-	foreach ( $cart_contents as $key => $values ) {
-		if ( $cart_item_key === $key ) {
-			WC()->cart->set_quantity( $key, 2, true );
-			return;
+			echo wp_json_encode( $result );
+			wp_die();
 		}
 	}
+
+		$result = array(
+			'status'     => false,
+			'product_id' => $product_id,
+			'quantity'   => $quantity,
+			'message'    => 'The quantity is not updated.',
+		);
+
+		echo wp_json_encode( $result );
+		wp_die();
 }
+
+add_action( 'wp_ajax_foobar', 'foobar' );
+add_action( 'wp_ajax_nopiv_foobar', 'foobar' );
+
+/**
+ * All the functions needs to be assign init hook will go in here
+ *
+ * @return void
+ */
+function init_hook_callback() {
+	remove_tags_support();
+	rcn_child_coupon_handler();
+}
+
+add_action( 'init', 'init_hook_callback' );

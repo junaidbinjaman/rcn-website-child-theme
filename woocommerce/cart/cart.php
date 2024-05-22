@@ -104,29 +104,22 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 						?>
 
 						<!-- Qty input -->
-						<?php
-						if ( $_product->is_sold_individually() ) {
-							$min_quantity = 1;
-							$max_quantity = 1;
-						} else {
-							$min_quantity = 0;
-							$max_quantity = $_product->get_max_purchase_quantity();
-						}
-
-						$product_quantity = woocommerce_quantity_input(
-							array(
-								'input_name'   => "cart[{$cart_item_key}][qty]",
-								'input_value'  => $cart_item['quantity'],
-								'max_value'    => $max_quantity,
-								'min_value'    => $min_quantity,
-								'product_name' => $product_name,
-							),
-							$_product,
-							false
-						);
-
-						echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS:ignore.
-						?>
+						
+						<div class="rcn-child-cart-qty">
+							<label for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>" data-action="minus">
+								<span class="dashicons dashicons-minus"></span>
+							</label>
+							<input 
+							type="number" 
+							name="qty"
+							value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
+							id="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
+							data-product-id="<?php echo esc_attr( $product_id ); ?>"
+							/>
+							<label for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>" data-action="plus">
+								<span class="dashicons dashicons-plus"></span>
+							</label>
+						</div>
 
 						<!-- Product subtotal -->
 						<?php
