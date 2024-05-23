@@ -38,7 +38,7 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
-<div class="rcn-child-cart-container">
+<div class="cart_totals rcn-child-cart-container">
 	<?php
 	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 		$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
@@ -106,7 +106,11 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 						<!-- Qty input -->
 						
 						<div class="rcn-child-cart-qty">
-							<label for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>" data-action="minus">
+							<label
+							for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
+							data-action="minus"
+							data-product-id="<?php echo esc_attr( $product_id ); ?>"
+							>
 								<span class="dashicons dashicons-minus"></span>
 							</label>
 							<input 
@@ -114,9 +118,12 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 							name="qty"
 							value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
 							id="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
-							data-product-id="<?php echo esc_attr( $product_id ); ?>"
 							/>
-							<label for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>" data-action="plus">
+							<label
+							for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
+							data-action="plus"
+							data-product-id="<?php echo esc_attr( $product_id ); ?>"
+							>
 								<span class="dashicons dashicons-plus"></span>
 							</label>
 						</div>
