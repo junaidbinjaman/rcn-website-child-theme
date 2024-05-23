@@ -33,7 +33,7 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 	</div>
 	<hr class="rcn-child-cart-header-divider" />
 	<h3 class="rcn-child-cart-secondary-header">Shopping cart</h3>
-	<p class="rcn-child-cart-paragraph">You have <?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?> items in your cart</p>
+	<p class="rcn-child-cart-paragraph">You have <span><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></span> items in your cart</p>
 </div>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
@@ -56,7 +56,7 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 		if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 			$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 			?>
-			<div class="rcn-child-cart-item">
+			<div class="rcn-child-cart-item rcn-child-cart-item-<?php echo esc_attr( $product_id ); ?>">
 				<div class="rcn-child-cart-item-thumbnail">
 				<?php
 				$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
@@ -132,7 +132,10 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 
 						<!-- Product subtotal -->
 						<?php
-							printf( '<p><small>Subtotal:</small><br />%s</p>',apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ) ); // phpcs:ignore
+							printf(
+								'<p class="rcn-child-cart-item-subtotal"><small>Subtotal:</small><br />%s</p>',
+								apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ) // phpcs:ignore.
+							);
 						?>
 						</div>
 						<div class="rcn-child-cart-product-remove">

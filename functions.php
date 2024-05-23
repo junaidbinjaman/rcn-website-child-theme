@@ -11,6 +11,8 @@
  * @package rcn-child
  */
 
+use ElementorPro\Modules\Forms\Fields\Number;
+
 /**
  * Enqueue styles & scripts
  *
@@ -307,6 +309,7 @@ function update_product_quantity() {
 
 	$product_id = isset( $_POST['product_id'] ) ? sanitize_text_field( wp_unslash( $_POST['product_id'] ) ) : 0;
 	$quantity   = isset( $_POST['quantity'] ) ? sanitize_text_field( wp_unslash( $_POST['quantity'] ) ) : 0;
+	$quantity   = intval( $quantity );
 	$cart       = WC()->cart;
 
 	foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
@@ -314,10 +317,15 @@ function update_product_quantity() {
 			$cart->set_quantity( $cart_item_key, $quantity );
 
 			$result = array(
-				'status'     => true,
-				'product_id' => $product_id,
-				'quantity'   => $quantity,
-				'message'    => 'The quantity is updated successfully',
+				'status'             => true,
+				'product_id'         => $product_id,
+				'quantity'           => $quantity,
+				'item_subtotal'      => wc_price( intval( wc_get_product( $product_id )->get_price() ) * $quantity ),
+				'cart_subtotal'      => wc_price( $cart->get_subtotal() ),
+				'cart_tax_total'     => wc_price( $cart->get_taxes_total() ),
+				'cart_total'         => wc_price( $cart->total ),
+				'cart_content_count' => $cart->get_cart_contents_count(),
+				'message'            => 'The quantity is updated successfully',
 			);
 
 			echo wp_json_encode( $result );

@@ -12,7 +12,7 @@ jQuery(document).ready(function ($) {
 
         if (availableStock === quantity && 'plus' === action) {
             return;
-        } 
+        }
 
         $('.rcn-child-cart-loading-screen').fadeIn();
 
@@ -46,6 +46,16 @@ function quantityHandler($, product_id, quantity) {
                     response.quantity
                 );
 
+                itemSubtotalHandle(
+                    $,
+                    response.product_id,
+                    response.item_subtotal
+                );
+                cartSubtotalHandler($, response.cart_subtotal);
+                cartTotalHandle($, response.cart_total);
+                handleCartContentCounts($, response.cart_content_count);
+                cartTotalTaxHandler($, response.cart_tax_total);
+
                 $('.rcn-child-cart-loading-screen').fadeOut();
             }
         },
@@ -53,4 +63,28 @@ function quantityHandler($, product_id, quantity) {
             console.log('Error');
         },
     });
+}
+
+function itemSubtotalHandle($, product_id, subtotal) {
+    $(`.rcn-child-cart-item-${product_id}`)
+        .find('.rcn-child-cart-item-subtotal .woocommerce-Price-amount')
+        .each(function () {
+            $(this).replaceWith(subtotal);
+        });
+}
+
+function cartSubtotalHandler($, subtotal) {
+    $('.rcn-child-cart-subtotal td').html(subtotal);
+}
+
+function cartTotalHandle($, total) {
+    $('.rcn-child-order-total td').html(total);
+}
+
+function handleCartContentCounts($, count) {
+    $('.rcn-child-cart-paragraph> span').text(count);
+}
+
+function cartTotalTaxHandler($, tax) {
+    $('.rcn-child-tax-total td').html(tax);
 }
