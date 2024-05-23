@@ -16,12 +16,6 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-
-do_action( 'woocommerce_before_cart' ); ?>
-
-<?php
-$shop_page_id        = get_option( 'woocommerce_shop_page_id' );
-$shop_page_permalink = get_the_permalink( $shop_page_id );
 ?>
 
 <div>
@@ -35,6 +29,13 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 	<h3 class="rcn-child-cart-secondary-header">Shopping cart</h3>
 	<p class="rcn-child-cart-paragraph">You have <span><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></span> items in your cart</p>
 </div>
+
+<?php
+do_action( 'woocommerce_before_cart' );
+
+$shop_page_id        = get_option( 'woocommerce_shop_page_id' );
+$shop_page_permalink = get_the_permalink( $shop_page_id );
+?>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 <?php do_action( 'woocommerce_before_cart_table' ); ?>

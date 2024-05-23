@@ -316,6 +316,11 @@ function update_product_quantity() {
 		if ( intval( $product_id ) === $cart_item['product_id'] ) {
 			$cart->set_quantity( $cart_item_key, $quantity );
 
+			wc_add_notice( 'The cart is updated successfully' );
+			ob_start();
+			wc_print_notices();
+			$notices = ob_get_clean();
+
 			$result = array(
 				'status'             => true,
 				'product_id'         => $product_id,
@@ -325,6 +330,7 @@ function update_product_quantity() {
 				'cart_tax_total'     => wc_price( $cart->get_taxes_total() ),
 				'cart_total'         => wc_price( $cart->total ),
 				'cart_content_count' => $cart->get_cart_contents_count(),
+				'notice'             => $notices,
 				'message'            => 'The quantity is updated successfully',
 			);
 
@@ -355,6 +361,7 @@ add_action( 'wp_ajax_nopiv_update_product_quantity', 'update_product_quantity' )
 function foobar() {
 }
 
+
 /**
  * All the functions needs to be assign init hook will go in here
  *
@@ -363,7 +370,6 @@ function foobar() {
 function init_hook_callback() {
 	remove_tags_support();
 	rcn_child_coupon_handler();
-	foobar();
 }
 
 add_action( 'init', 'init_hook_callback' );

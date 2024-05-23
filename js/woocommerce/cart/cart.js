@@ -55,12 +55,13 @@ function quantityHandler($, product_id, quantity) {
                 cartTotalHandle($, response.cart_total);
                 handleCartContentCounts($, response.cart_content_count);
                 cartTotalTaxHandler($, response.cart_tax_total);
+                noticeHandler($, response.notice);
 
                 $('.rcn-child-cart-loading-screen').fadeOut();
             }
         },
         error: function (xhr, status, error) {
-            console.log('Error');
+            console.log(error);
         },
     });
 }
@@ -88,3 +89,8 @@ function handleCartContentCounts($, count) {
 function cartTotalTaxHandler($, tax) {
     $('.rcn-child-tax-total td').html(tax);
 }
+
+function noticeHandler($, notice) {
+    $('.woocommerce-notices-wrapper').html(notice);
+}
+
