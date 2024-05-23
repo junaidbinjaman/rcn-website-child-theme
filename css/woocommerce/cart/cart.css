@@ -376,3 +376,21 @@ form.woocommerce-cart-form {
     align-items: center;
     gap: 20px;
 }
+
+.rcn-child-cart-loading-screen {
+    display: none;
+}
+
+.rcn-child-cart-loading-screen> div {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #ffffff63;
+}

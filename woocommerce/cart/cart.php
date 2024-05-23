@@ -118,6 +118,8 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 							name="qty"
 							value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
 							id="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
+							disabled
+							data-available-stock="<?php echo esc_attr( $_product->get_stock_quantity() ); ?>"
 							/>
 							<label
 							for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
@@ -177,3 +179,9 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 </div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
+<div class="rcn-child-cart-loading-screen">
+	<div>
+		<?php get_template_part( 'template-parts/spinner' ); ?>
+	</div>
+</div>

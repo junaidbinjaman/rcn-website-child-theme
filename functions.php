@@ -294,7 +294,7 @@ function rcn_child_coupon_handler() {
  *
  * @return void
  */
-function foobar() {
+function update_product_quantity() {
 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'wc-cart-nonce' ) ) {
 		$result = array(
 			'status'  => false,
@@ -336,8 +336,16 @@ function foobar() {
 		wp_die();
 }
 
-add_action( 'wp_ajax_foobar', 'foobar' );
-add_action( 'wp_ajax_nopiv_foobar', 'foobar' );
+add_action( 'wp_ajax_update_product_quantity', 'update_product_quantity' );
+add_action( 'wp_ajax_nopiv_update_product_quantity', 'update_product_quantity' );
+
+/**
+ * Undocumented function
+ *
+ * @return void
+ */
+function foobar() {
+}
 
 /**
  * All the functions needs to be assign init hook will go in here
@@ -347,6 +355,7 @@ add_action( 'wp_ajax_nopiv_foobar', 'foobar' );
 function init_hook_callback() {
 	remove_tags_support();
 	rcn_child_coupon_handler();
+	foobar();
 }
 
 add_action( 'init', 'init_hook_callback' );
