@@ -4,8 +4,3 @@
  *
  * @package rcn-child
  */
-
- $data = $_POST["rcn-cart-coupon"];
- echo '<pre>';
- var_dump( $data );
- echo '</pre>';

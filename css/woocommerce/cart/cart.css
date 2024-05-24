@@ -313,8 +313,7 @@ Product listing items
 }
 
 form.woocommerce-cart-form {
-    width: fit-content;
-    display: inline-block;
+    float: left;
     margin-right: 50px;
 }
 
@@ -328,10 +327,6 @@ form.woocommerce-cart-form {
 .woocommerce .cart-collaterals .cart_totals,
 .woocommerce-page .cart-collaterals .cart_totals {
     float: none;
-}
-
-.rcn-child-cart-container {
-    width: fit-content;
 }
 
 .rcn-child-cart-item {

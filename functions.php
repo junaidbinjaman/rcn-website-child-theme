@@ -311,7 +311,8 @@ function update_product_quantity() {
 
 	$product_id     = isset( $_POST['product_id'] ) ? sanitize_text_field( wp_unslash( $_POST['product_id'] ) ) : 0;
 	$quantity       = isset( $_POST['quantity'] ) ? sanitize_text_field( wp_unslash( $_POST['quantity'] ) ) : 0;
-	$stock_quantity = wc_get_product( 1524 )->get_stock_quantity();
+	$stock_quantity = wc_get_product( $product_id )->get_stock_quantity();
+	$stock_status   = wc_get_product( $product_id )->get_stock_status();
 	$quantity       = intval( $quantity );
 	$cart           = WC()->cart;
 
@@ -331,16 +332,38 @@ function update_product_quantity() {
 		wp_die();
 	}
 
-	if ( $quantity > $stock_quantity ) {
-		wc_add_notice( 'Sorry! you\'r running out of stock. Please contact support', 'error' );
+	if ( 'outofstock' === $stock_status ) {
+		$product_name = wc_get_product( $product_id )->get_title();
+		$message      = "Sorry! {$product_name} cannot be purchased. Because , it's out of stock.";
+
+		wc_add_notice( $message, 'error' );
 		ob_start();
 		wc_print_notices();
 		$notice = ob_get_clean();
 
 		$result = array(
 			'status'      => false,
-			'status_code' => 111, // 111 means, the customer is running out of stock.
+			'status_code' => 112,
 			'notice'      => $notice,
+		);
+
+		echo wp_json_encode( $result );
+		wp_die();
+	}
+
+	if ( null !== $stock_quantity && $quantity > $stock_quantity ) {
+		wc_add_notice( 'Sorry! you\'r running out of stock. Please contact support', 'error' );
+		ob_start();
+		wc_print_notices();
+		$notice = ob_get_clean();
+
+		$result = array(
+			'status'         => false,
+			'status_code'    => 111, // 111 means, the customer is running out of stock.
+			'notice'         => $notice,
+			'product_id'     => $product_id,
+			'quantity'       => $quantity,
+			'stock_quantity' => $stock_quantity,
 		);
 
 		echo wp_json_encode( $result );
@@ -400,3 +423,15 @@ function init_hook_callback() {
 }
 
 add_action( 'init', 'init_hook_callback' );
+
+//phpcs:disabled
+
+function foobar() {
+	if ( is_admin() ) return;
+
+	echo '<pre style="color: black">';
+	var_dump( wc_get_product( 14900 )->get_stock_quantity() );
+	echo '</pre>';
+}
+
+// add_action( 'woocommerce_cart_loaded_from_session', 'foobar' );

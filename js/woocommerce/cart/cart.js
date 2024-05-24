@@ -38,13 +38,22 @@ function quantityHandler($, product_id, quantity) {
         success: function (response) {
             response = JSON.parse(response);
 
+            // The customer is running out of stock.
             if (!response.status && response.status_code === 111) {
                 noticeHandler($, response.notice);
                 $('.rcn-child-cart-loading-screen').fadeOut();
                 return;
             }
 
+            // The customer is trying to go beyond 1
             if (!response.status && response.status_code === 110) {
+                noticeHandler($, response.notice);
+                $('.rcn-child-cart-loading-screen').fadeOut();
+                return;
+            }
+
+            // The product is completely out of stock.
+            if (!response.status && response.status_code === 112) {
                 noticeHandler($, response.notice);
                 $('.rcn-child-cart-loading-screen').fadeOut();
                 return;
