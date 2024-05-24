@@ -17,23 +17,23 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/*
- * @hooked wc_empty_cart_message - 10
- */
-do_action( 'woocommerce_cart_is_empty' );
+$shop_page_id        = get_option( 'woocommerce_shop_page_id' );
+$shop_page_permalink = get_the_permalink( $shop_page_id );
+?>
 
-if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
-	<p class="return-to-shop">
-		<a class="button wc-backward<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php
-				/**
-				 * Filter "Return To Shop" text.
-				 *
-				 * @since 4.6.0
-				 * @param string $default_text Default text.
-				 */
-				echo esc_html( apply_filters( 'woocommerce_return_to_shop_text', __( 'Return to shop', 'woocommerce' ) ) );
-			?>
+<div>
+	<div class="rcn-child-cart-continue-shopping-btn">
+		<a href="<?php echo esc_html( $shop_page_permalink ); ?>" class="rcn-child-cart-continue-shopping-btn">
+			<i class="eicon-angle-left"></i>
+			<span>Continue Shopping</span>
 		</a>
-	</p>
-<?php endif; ?>
+	</div>
+	<hr class="rcn-child-cart-header-divider" />
+	<h3 class="rcn-child-cart-secondary-header">Shopping cart</h3>
+	<p class="rcn-child-cart-paragraph">You have <span><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?></span> items in your cart</p>
+</div>
+
+<div class="rcn-child-cart-empty-screen">
+	<img src="<?php echo esc_attr( get_stylesheet_directory_uri() . '/img/empty-cart-icon.png' ); ?>" width="68" height="68" alt="df">
+	<p>No item in your cart</p>
+</div>

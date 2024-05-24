@@ -38,19 +38,19 @@ function your_theme_enqueue_styles() {
 
 	wp_register_style(
 		'rcn-child-cart',
-		get_stylesheet_directory_uri() . '/css/woocommerce/cart/cart.css',
+		get_stylesheet_directory_uri() . '/src/css/woocommerce/cart/cart.css',
 		array(),
 		fileatime(
-			get_stylesheet_directory() . '/css/woocommerce/cart/cart.css'
+			get_stylesheet_directory() . '/src/css/woocommerce/cart/cart.css'
 		),
 		'all'
 	);
 
 	wp_register_script(
 		'rcn-child-cart-scripts',
-		get_stylesheet_directory_uri() . '/js/woocommerce/cart/cart.js',
+		get_stylesheet_directory_uri() . '/src/js/woocommerce/cart/cart.js',
 		array( 'jquery' ),
-		fileatime( get_stylesheet_directory() . '/js/woocommerce/cart/cart.js' ),
+		fileatime( get_stylesheet_directory() . '/src/js/woocommerce/cart/cart.js' ),
 		true
 	);
 

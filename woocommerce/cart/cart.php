@@ -16,13 +16,16 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+
+$shop_page_id        = get_option( 'woocommerce_shop_page_id' );
+$shop_page_permalink = get_the_permalink( $shop_page_id );
 ?>
 
 <div>
 	<div class="rcn-child-cart-continue-shopping-btn">
 		<a href="<?php echo esc_html( $shop_page_permalink ); ?>" class="rcn-child-cart-continue-shopping-btn">
 			<i class="eicon-angle-left"></i>
-			<span>Shopping Continue</span>
+			<span>Continue Shopping</span>
 		</a>
 	</div>
 	<hr class="rcn-child-cart-header-divider" />
@@ -32,9 +35,6 @@ defined( 'ABSPATH' ) || exit;
 
 <?php
 do_action( 'woocommerce_before_cart' );
-
-$shop_page_id        = get_option( 'woocommerce_shop_page_id' );
-$shop_page_permalink = get_the_permalink( $shop_page_id );
 ?>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">

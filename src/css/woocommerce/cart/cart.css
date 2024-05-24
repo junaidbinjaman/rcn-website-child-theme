@@ -367,3 +367,19 @@ form.woocommerce-cart-form {
     bottom: 0;
     background-color: #ffffff63;
 }
+
+.rcn-child-cart-empty-screen {
+    background: #F9F9F9;
+    text-align: center;
+    padding: 100px;
+    border-radius: 12px;
+}
+
+.rcn-child-cart-empty-screen p {
+    color: #4A4747;
+    margin-top: 20px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
