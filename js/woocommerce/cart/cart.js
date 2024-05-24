@@ -6,15 +6,12 @@ jQuery(document).ready(function ($) {
         var quantity = parseInt(input.val());
         var availableStock = parseInt(input.data('available-stock'));
 
-        if (quantity === 1 && 'minus' === action) {
-            return;
-        }
-
-        if (availableStock === quantity && 'plus' === action) {
-            return;
-        }
-
         $('.rcn-child-cart-loading-screen').fadeIn();
+
+        if (quantity === 1 && 'minus' === action) {
+            quantityHandler($, product_id, 0)
+            return;
+        }
 
         if ('minus' === action) {
             quantity = quantity - 1;
@@ -41,6 +38,18 @@ function quantityHandler($, product_id, quantity) {
         success: function (response) {
             response = JSON.parse(response);
 
+            if (!response.status && response.status_code === 111) {
+                noticeHandler($, response.notice);
+                $('.rcn-child-cart-loading-screen').fadeOut();
+                return;
+            }
+
+            if (!response.status && response.status_code === 110) {
+                noticeHandler($, response.notice);
+                $('.rcn-child-cart-loading-screen').fadeOut();
+                return;
+            }
+
             if (response.status) {
                 $(`#rcn-child-cart-qty-${response.product_id}`).val(
                     response.quantity
@@ -56,6 +65,7 @@ function quantityHandler($, product_id, quantity) {
                 handleCartContentCounts($, response.cart_content_count);
                 cartTotalTaxHandler($, response.cart_tax_total);
                 noticeHandler($, response.notice);
+                discountUpdateHandler($, response.cart_total_discount)
 
                 $('.rcn-child-cart-loading-screen').fadeOut();
             }
@@ -92,5 +102,9 @@ function cartTotalTaxHandler($, tax) {
 
 function noticeHandler($, notice) {
     $('.woocommerce-notices-wrapper').html(notice);
+}
+
+function discountUpdateHandler($, discountHTML) {
+    $('.rcn-child-cart-discount td').html(discountHTML);
 }
 

@@ -13,6 +13,8 @@
 
 use ElementorPro\Modules\Forms\Fields\Number;
 
+use function PHPSTORM_META\type;
+
 /**
  * Enqueue styles & scripts
  *
@@ -307,10 +309,43 @@ function update_product_quantity() {
 		wp_die();
 	}
 
-	$product_id = isset( $_POST['product_id'] ) ? sanitize_text_field( wp_unslash( $_POST['product_id'] ) ) : 0;
-	$quantity   = isset( $_POST['quantity'] ) ? sanitize_text_field( wp_unslash( $_POST['quantity'] ) ) : 0;
-	$quantity   = intval( $quantity );
-	$cart       = WC()->cart;
+	$product_id     = isset( $_POST['product_id'] ) ? sanitize_text_field( wp_unslash( $_POST['product_id'] ) ) : 0;
+	$quantity       = isset( $_POST['quantity'] ) ? sanitize_text_field( wp_unslash( $_POST['quantity'] ) ) : 0;
+	$stock_quantity = wc_get_product( 1524 )->get_stock_quantity();
+	$quantity       = intval( $quantity );
+	$cart           = WC()->cart;
+
+	if ( 0 === $quantity ) {
+		wc_add_notice( 'Please click on the trash icon to remove the product', 'error' );
+		ob_start();
+		wc_print_notices();
+		$notices = ob_get_clean();
+
+		$result = array(
+			'status'      => false,
+			'status_code' => 110, // 110 means, the customer is trying to go beyond 1.
+			'notice'      => $notices,
+		);
+
+		echo wp_json_encode( $result );
+		wp_die();
+	}
+
+	if ( $quantity > $stock_quantity ) {
+		wc_add_notice( 'Sorry! you\'r running out of stock. Please contact support', 'error' );
+		ob_start();
+		wc_print_notices();
+		$notice = ob_get_clean();
+
+		$result = array(
+			'status'      => false,
+			'status_code' => 111, // 111 means, the customer is running out of stock.
+			'notice'      => $notice,
+		);
+
+		echo wp_json_encode( $result );
+		wp_die();
+	}
 
 	foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
 		if ( intval( $product_id ) === $cart_item['product_id'] ) {
@@ -322,16 +357,17 @@ function update_product_quantity() {
 			$notices = ob_get_clean();
 
 			$result = array(
-				'status'             => true,
-				'product_id'         => $product_id,
-				'quantity'           => $quantity,
-				'item_subtotal'      => wc_price( intval( wc_get_product( $product_id )->get_price() ) * $quantity ),
-				'cart_subtotal'      => wc_price( $cart->get_subtotal() ),
-				'cart_tax_total'     => wc_price( $cart->get_taxes_total() ),
-				'cart_total'         => wc_price( $cart->total ),
-				'cart_content_count' => $cart->get_cart_contents_count(),
-				'notice'             => $notices,
-				'message'            => 'The quantity is updated successfully',
+				'status'              => true,
+				'product_id'          => $product_id,
+				'quantity'            => $quantity,
+				'item_subtotal'       => wc_price( intval( wc_get_product( $product_id )->get_price() ) * $quantity ),
+				'cart_subtotal'       => wc_price( $cart->get_subtotal() ),
+				'cart_tax_total'      => wc_price( $cart->get_taxes_total() ),
+				'cart_total'          => wc_price( $cart->total ),
+				'cart_content_count'  => $cart->get_cart_contents_count(),
+				'cart_total_discount' => $cart->get_total_discount(),
+				'notice'              => $notices,
+				'message'             => 'The quantity is updated successfully',
 			);
 
 			echo wp_json_encode( $result );
@@ -352,15 +388,6 @@ function update_product_quantity() {
 
 add_action( 'wp_ajax_update_product_quantity', 'update_product_quantity' );
 add_action( 'wp_ajax_nopiv_update_product_quantity', 'update_product_quantity' );
-
-/**
- * Undocumented function
- *
- * @return void
- */
-function foobar() {
-}
-
 
 /**
  * All the functions needs to be assign init hook will go in here

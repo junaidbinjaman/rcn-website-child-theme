@@ -112,7 +112,9 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 							data-action="minus"
 							data-product-id="<?php echo esc_attr( $product_id ); ?>"
 							>
-								<span class="dashicons dashicons-minus"></span>
+								<span>
+									<i aria-hidden="true" class="fas fa-minus"></i>
+								</span>
 							</label>
 							<input 
 							type="number" 
@@ -127,7 +129,9 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 							data-action="plus"
 							data-product-id="<?php echo esc_attr( $product_id ); ?>"
 							>
-								<span class="dashicons dashicons-plus"></span>
+								<span>
+									<i aria-hidden="true" class="fas fa-plus"></i>
+								</span>
 							</label>
 						</div>
 
