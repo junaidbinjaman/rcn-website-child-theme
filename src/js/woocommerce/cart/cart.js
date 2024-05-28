@@ -2,7 +2,7 @@ jQuery(document).ready(function ($) {
     $('.rcn-child-cart-qty label').on('click', function () {
         var action = $(this).data('action');
         var product_id = $(this).data('product-id');
-        var input = $(`#rcn-child-cart-qty-${product_id}`);
+        var input = $(`.rcn-child-cart-qty-${product_id}`);
         var quantity = parseInt(input.val());
         var availableStock = parseInt(input.data('available-stock'));
 
@@ -60,7 +60,7 @@ function quantityHandler($, product_id, quantity) {
             }
 
             if (response.status) {
-                $(`#rcn-child-cart-qty-${response.product_id}`).val(
+                $(`.rcn-child-cart-qty-${response.product_id}`).val(
                     response.quantity
                 );
 

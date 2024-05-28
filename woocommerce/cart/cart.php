@@ -68,6 +68,19 @@ do_action( 'woocommerce_before_cart' );
 					printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS:ignore.
 				}
 				?>
+
+				<!-- Qty input for mobile -->
+				<?php
+				get_template_part(
+					'template-parts/cart-qty-input',
+					null,
+					array(
+						'product_id' => $product_id,
+						'cart_item'  => $cart_item,
+					),
+				);
+				?>
+
 				</div>
 				<div class="rcn-child-cart-item-data">
 					<div class="rcn-child-cart-item-name">
@@ -105,35 +118,16 @@ do_action( 'woocommerce_before_cart' );
 						?>
 
 						<!-- Qty input -->
-						
-						<div class="rcn-child-cart-qty">
-							<label
-							for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
-							data-action="minus"
-							data-product-id="<?php echo esc_attr( $product_id ); ?>"
-							>
-								<span>
-									<i aria-hidden="true" class="fas fa-minus"></i>
-								</span>
-							</label>
-							<input 
-							type="number" 
-							name="qty"
-							value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
-							id="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
-							disabled
-							data-available-stock="<?php echo esc_attr( $_product->get_stock_quantity() ); ?>"
-							/>
-							<label
-							for="rcn-child-cart-qty-<?php echo esc_attr( $product_id ); ?>"
-							data-action="plus"
-							data-product-id="<?php echo esc_attr( $product_id ); ?>"
-							>
-								<span>
-									<i aria-hidden="true" class="fas fa-plus"></i>
-								</span>
-							</label>
-						</div>
+						<?php
+						get_template_part(
+							'template-parts/cart-qty-input',
+							null,
+							array(
+								'product_id' => $product_id,
+								'cart_item'  => $cart_item,
+							),
+						);
+						?>
 
 						<!-- Product subtotal -->
 						<?php
