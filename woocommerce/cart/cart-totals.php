@@ -24,6 +24,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php $rcn_cart_url = get_the_permalink( get_the_ID() ); ?>
 
 	<div class="rcn-child-cart-coupon-wrapper">
+		<p>Have a code? Click here to enter your discount code</p>
 		<form method="POST" action="<?php echo esc_html( $rcn_cart_url ); ?>">
 			<input type="text" name="rcn-child-cart-coupon" placeholder="Insert discount code here">
 			<input type="submit" value="APPLY DISCOUNT">

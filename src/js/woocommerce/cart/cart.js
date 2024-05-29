@@ -1,15 +1,16 @@
 jQuery(document).ready(function ($) {
+    couponVisibilityHandler($);
+
     $('.rcn-child-cart-qty label').on('click', function () {
         var action = $(this).data('action');
         var product_id = $(this).data('product-id');
         var input = $(`.rcn-child-cart-qty-${product_id}`);
         var quantity = parseInt(input.val());
-        var availableStock = parseInt(input.data('available-stock'));
 
         $('.rcn-child-cart-loading-screen').fadeIn();
 
         if (quantity === 1 && 'minus' === action) {
-            quantityHandler($, product_id, 0)
+            quantityHandler($, product_id, 0);
             return;
         }
 
@@ -74,7 +75,7 @@ function quantityHandler($, product_id, quantity) {
                 handleCartContentCounts($, response.cart_content_count);
                 cartTotalTaxHandler($, response.cart_tax_total);
                 noticeHandler($, response.notice);
-                discountUpdateHandler($, response.cart_total_discount)
+                discountUpdateHandler($, response.cart_total_discount);
 
                 $('.rcn-child-cart-loading-screen').fadeOut();
             }
@@ -117,3 +118,9 @@ function discountUpdateHandler($, discountHTML) {
     $('.rcn-child-cart-discount td').html(discountHTML);
 }
 
+function couponVisibilityHandler($) {
+    $('.rcn-child-cart-coupon-wrapper').on('click', 'p', function () {
+        $(this).hide();
+        $(this).siblings().css('display', 'flex');
+    });
+}
