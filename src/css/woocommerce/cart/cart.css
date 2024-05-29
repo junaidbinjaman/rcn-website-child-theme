@@ -1,8 +1,72 @@
 /* The cart page style sheet */
 
+.elementor-kit-31 {
+    --e-global-color-primary: #0040E0;
+    --e-global-color-secondary: #282B30;
+    --e-global-color-text: #000000;
+    --e-global-color-accent: #000000;
+    --e-global-color-6318fdd: #1F1F1F;
+    --e-global-color-d8bec67: #000000;
+    --e-global-color-126a520: #515151;
+    --e-global-color-376fee2: #444E5A;
+    --e-global-typography-accent-font-family: "Montserrat";
+    --e-global-typography-accent-font-size: 22px;
+    --e-global-typography-accent-font-weight: 500;
+    --e-global-typography-accent-text-transform: uppercase;
+    --e-global-typography-accent-font-style: normal;
+    --e-global-typography-primary-font-family: "Montserrat";
+    --e-global-typography-primary-font-size: 55px;
+    --e-global-typography-primary-font-weight: 700;
+    --e-global-typography-primary-text-transform: uppercase;
+    --e-global-typography-primary-line-height: 50px;
+    --e-global-typography-secondary-font-family: "Montserrat";
+    --e-global-typography-secondary-font-size: 35px;
+    --e-global-typography-secondary-font-weight: 700;
+    --e-global-typography-secondary-text-transform: uppercase;
+    --e-global-typography-secondary-line-height: 37px;
+    --e-global-typography-text-font-family: "Montserrat";
+    --e-global-typography-text-font-size: 17px;
+    --e-global-typography-text-font-weight: 400;
+    --e-global-typography-text-line-height: 21px;
+    --e-global-typography-5d5392e-font-family: "Montserrat";
+    --e-global-typography-5d5392e-font-size: 24px;
+    --e-global-typography-5d5392e-font-weight: 600;
+    --e-global-typography-5d5392e-text-transform: none;
+    --e-global-typography-5d5392e-font-style: normal;
+    --e-global-typography-5d5392e-line-height: 25px;
+    --e-global-typography-9f933ec-font-family: "Montserrat";
+    --e-global-typography-9f933ec-font-size: 15px;
+    --e-global-typography-9f933ec-font-weight: 600;
+    --e-global-typography-9f933ec-text-transform: uppercase;
+    --e-global-typography-b195f89-font-family: "Montserrat";
+    --e-global-typography-b195f89-font-size: 15px;
+    --e-global-typography-b195f89-font-weight: 600;
+    --e-global-typography-608c5b8-font-family: "Montserrat";
+    --e-global-typography-608c5b8-font-size: 17px;
+    --e-global-typography-608c5b8-font-weight: 400;
+    --e-global-typography-608c5b8-line-height: 21px;
+    color: var(--e-global-color-text);
+    font-family: var(--e-global-typography-text-font-family), Sans-serif;
+    font-size: var(--e-global-typography-text-font-size);
+    font-weight: var(--e-global-typography-text-font-weight);
+    line-height: var(--e-global-typography-text-line-height);
+    background-color: #ffffff;
+}
+
+.woocommerce {
+    width: fit-content;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 /* ===================
 Cart header
 ====================== */
+
+.rcn-child-cart-header {
+    margin-bottom: 50px;
+}
 
 .rcn-child-cart-continue-shopping-btn {
     display: inline-block;
@@ -36,6 +100,7 @@ Cart header
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin-bottom: 0 !important;
 }
 
 .rcn-child-cart-paragraph {
@@ -390,13 +455,27 @@ form.woocommerce-cart-form {
 }
 
 @media  (max-width: 675px) {
+    .woocommerce {
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+
+    .rcn-child-cart-header {
+        padding: 10px;
+        margin-bottom: 0px;
+    }
+
+    .woocommerce-notices-wrapper {
+        margin: 0px 10px;
+    }
+
     .rcn-child-cart-item {
-        width: 340px;
+        width: 100%;
     }
 
     .rcn-child-cart-item-thumbnail .rcn-child-cart-qty {
         display: block;
-        margin-top: 10px;
+        margin-top: 8px;
     }
     
     .rcn-child-cart-qty {
@@ -404,7 +483,8 @@ form.woocommerce-cart-form {
     }
 
     .rcn-child-cart-qty input[type='number'] {
-        width: 25px;
+        width: 30px;
+        font-size: 14px;
     }
 
     .rcn-child-cart-qty span {
@@ -421,5 +501,29 @@ form.woocommerce-cart-form {
 
     .rcn-child-proceed-to-checkout-btn a {
         width: 290px;
+    }
+
+    form.woocommerce-cart-form {
+        margin-right: 0px;
+        padding: 0px 10px;
+        width: 100%;
+    }
+
+    .rcn-child-cart-item-thumbnail img {
+        width: 140px !important;
+    }
+
+    .rcn-child-cart-item {
+        gap: 10px;
+        padding: 8px;
+    }
+
+    .rcn-child-cart-product-remove {
+        margin-bottom: 0 !important;
+        margin-right: 5px;
+    }
+
+    .rcn-child-cart-item-subtotal {
+        margin-top: 5px;
     }
 }

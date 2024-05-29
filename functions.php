@@ -39,7 +39,7 @@ function your_theme_enqueue_styles() {
 	wp_register_style(
 		'rcn-child-cart',
 		get_stylesheet_directory_uri() . '/src/css/woocommerce/cart/cart.css',
-		array(),
+		array( 'elementor-frontend', 'elementor-post-31' ),
 		fileatime(
 			get_stylesheet_directory() . '/src/css/woocommerce/cart/cart.css'
 		),
@@ -71,7 +71,7 @@ function your_theme_enqueue_styles() {
 	wp_enqueue_script( 'wc-cart-fragments' );
 
 	// Load WC cart scripts and css on cart page only.
-	if ( is_page( wc_get_page_id( 'cart' ) ) ) {
+	if ( is_page( wc_get_page_id( 'cart' ) ) || is_page( 31446 ) ) { // 31446 is the development cart page id.
 		wp_enqueue_style( 'rcn-child-cart' );
 		wp_enqueue_script( 'rcn-child-cart-scripts' );
 	}

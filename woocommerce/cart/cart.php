@@ -21,7 +21,7 @@ $shop_page_id        = get_option( 'woocommerce_shop_page_id' );
 $shop_page_permalink = get_the_permalink( $shop_page_id );
 ?>
 
-<div>
+<div class="rcn-child-cart-header">
 	<div class="rcn-child-cart-continue-shopping-btn">
 		<a href="<?php echo esc_html( $shop_page_permalink ); ?>" class="rcn-child-cart-continue-shopping-btn">
 			<i class="eicon-angle-left"></i>
