@@ -1,47 +1,47 @@
 /* The cart page style sheet */
 
 .elementor-kit-31 {
-    --e-global-color-primary: #0040E0;
-    --e-global-color-secondary: #282B30;
+    --e-global-color-primary: #0040e0;
+    --e-global-color-secondary: #282b30;
     --e-global-color-text: #000000;
     --e-global-color-accent: #000000;
-    --e-global-color-6318fdd: #1F1F1F;
+    --e-global-color-6318fdd: #1f1f1f;
     --e-global-color-d8bec67: #000000;
     --e-global-color-126a520: #515151;
-    --e-global-color-376fee2: #444E5A;
-    --e-global-typography-accent-font-family: "Montserrat";
+    --e-global-color-376fee2: #444e5a;
+    --e-global-typography-accent-font-family: 'Montserrat';
     --e-global-typography-accent-font-size: 22px;
     --e-global-typography-accent-font-weight: 500;
     --e-global-typography-accent-text-transform: uppercase;
     --e-global-typography-accent-font-style: normal;
-    --e-global-typography-primary-font-family: "Montserrat";
+    --e-global-typography-primary-font-family: 'Montserrat';
     --e-global-typography-primary-font-size: 55px;
     --e-global-typography-primary-font-weight: 700;
     --e-global-typography-primary-text-transform: uppercase;
     --e-global-typography-primary-line-height: 50px;
-    --e-global-typography-secondary-font-family: "Montserrat";
+    --e-global-typography-secondary-font-family: 'Montserrat';
     --e-global-typography-secondary-font-size: 35px;
     --e-global-typography-secondary-font-weight: 700;
     --e-global-typography-secondary-text-transform: uppercase;
     --e-global-typography-secondary-line-height: 37px;
-    --e-global-typography-text-font-family: "Montserrat";
+    --e-global-typography-text-font-family: 'Montserrat';
     --e-global-typography-text-font-size: 17px;
     --e-global-typography-text-font-weight: 400;
     --e-global-typography-text-line-height: 21px;
-    --e-global-typography-5d5392e-font-family: "Montserrat";
+    --e-global-typography-5d5392e-font-family: 'Montserrat';
     --e-global-typography-5d5392e-font-size: 24px;
     --e-global-typography-5d5392e-font-weight: 600;
     --e-global-typography-5d5392e-text-transform: none;
     --e-global-typography-5d5392e-font-style: normal;
     --e-global-typography-5d5392e-line-height: 25px;
-    --e-global-typography-9f933ec-font-family: "Montserrat";
+    --e-global-typography-9f933ec-font-family: 'Montserrat';
     --e-global-typography-9f933ec-font-size: 15px;
     --e-global-typography-9f933ec-font-weight: 600;
     --e-global-typography-9f933ec-text-transform: uppercase;
-    --e-global-typography-b195f89-font-family: "Montserrat";
+    --e-global-typography-b195f89-font-family: 'Montserrat';
     --e-global-typography-b195f89-font-size: 15px;
     --e-global-typography-b195f89-font-weight: 600;
-    --e-global-typography-608c5b8-font-family: "Montserrat";
+    --e-global-typography-608c5b8-font-family: 'Montserrat';
     --e-global-typography-608c5b8-font-size: 17px;
     --e-global-typography-608c5b8-font-weight: 400;
     --e-global-typography-608c5b8-line-height: 21px;
@@ -56,8 +56,14 @@
 .woocommerce {
     width: fit-content;
     margin: auto;
-    margin-top: 40px;
     margin-bottom: 40px;
+}
+
+@media screen and (max-width: 767px) {
+    .woocommerce {
+        margin-top: 0px;
+        margin-bottom: 40px;
+    }
 }
 
 /* ===================
@@ -65,7 +71,22 @@ Cart header
 ====================== */
 
 .rcn-child-cart-header {
+    padding-top: 20px;
     margin-bottom: 50px;
+}
+
+@media (max-width: 767px) {
+    .rcn-child-cart-header {
+        padding: 10px;
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 767px) {
+    .rcn-child-cart-header {
+        padding: 20px;
+        margin-bottom: 0px;
+    }
 }
 
 .rcn-child-cart-continue-shopping-btn {
@@ -129,11 +150,28 @@ Cart total styles
     background: #444e5a;
     border-radius: 8px !important;
     color: white;
-    border: none;
+    width: 394px !important;
+}
+
+/* @media (min-width: 767px) and (max-width: 1024px) {
+    .rcn-child-cart-totals table {
+        width: 600px !important;
+        margin: auto !important;
+    }
+} */
+
+@media (max-width: 1024px) {
+    .rcn-child-cart-totals {
+        width: 100% !important;
+        margin-bottom: 0px !important;
+        border-radius: 0px !important;
+        border: 0px !important;
+        margin-top: 50px;
+    }
 }
 
 .rcn-child-cart-coupon-wrapper {
-    background-color: #F9F9F9;
+    background-color: #f9f9f9;
     padding: 20px 20px;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
@@ -175,6 +213,43 @@ Cart total styles
     background-color: #006cfa !important;
 }
 
+@media (max-width: 767px) {
+    .rcn-child-cart-coupon-wrapper p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .rcn-child-cart-coupon-wrapper {
+        padding: 10px 20px;
+        box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .rcn-child-cart-coupon-wrapper p {
+        text-align: center;
+    }
+
+    .rcn-child-cart-coupon-wrapper form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .rcn-child-cart-coupon-wrapper input {
+        width: 100%;
+        border-radius: 8px !important;
+    }
+
+    .rcn-child-cart-coupon-wrapper input[type='submit'] {
+        width: 70%;
+        border-radius: 8px !important;
+    }
+
+    .rcn-child-cart-coupon-wrapper {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+    }
+}
+
 .rcn-child-cart-total-primary-title {
     color: #fefcfc !important;
     font-size: 22px !important;
@@ -184,6 +259,12 @@ Cart total styles
     margin: 0px !important;
     padding: 20px 20px !important;
     border-color: #6b6b6b !important;
+}
+
+@media (max-width: 1024px) {
+    .rcn-child-cart-total-primary-title {
+        display: none;
+    }
 }
 
 .rcn-child-cart-totals table {
@@ -215,10 +296,6 @@ Cart total styles
     padding-bottom: 7px !important;
 }
 
-.rcn-child-cart-totals {
-    width: 394px !important;
-}
-
 /* ========================
 Product listing items
 =========================== */
@@ -241,7 +318,7 @@ Product listing items
 }
 
 .rcn-child-order-total {
-    border-top: 0px solid #6B6B6B;
+    border-top: 0px solid #6b6b6b;
 }
 
 .rcn-child-order-total th,
@@ -274,6 +351,25 @@ Product listing items
 
 .rcn-child-proceed-to-checkout-btn a:active {
     transform: scale(0.9);
+}
+
+@media (max-width: 767px) {
+    .rcn-child-proceed-to-checkout-btn a {
+        width: 100%;
+        margin-bottom: 0px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .rcn-child-proceed-to-checkout-btn {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* .rcn-child-proceed-to-checkout-btn a {
+        width: 570px;
+        margin-bottom: 0px !important;
+    } */
 }
 
 .woocommerce-js ul#shipping_method .amount {
@@ -405,6 +501,23 @@ form.woocommerce-cart-form {
     margin-right: 50px;
 }
 
+@media (max-width: 767px) {
+    .woocommerce-cart-form {
+        margin-right: 0px;
+        padding: 0px 10px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 1024px) {
+    .woocommerce-cart-form {
+        margin-right: 0px;
+        padding: 0px 20px;
+    }
+}
+
+/* cart total */
+
 .woocommerce .cart-collaterals,
 .woocommerce-page .cart-collaterals {
     zoom: 1;
@@ -416,6 +529,15 @@ form.woocommerce-cart-form {
 .woocommerce-page .cart-collaterals .cart_totals {
     float: none;
 }
+
+@media (max-width: 1024px) {
+    .rcn-child-order-total > td::before {
+        font-size: 18px;
+        font-weight: 600 !important;
+    }
+}
+
+/* Cart items */
 
 .rcn-child-cart-item {
     display: flex;
@@ -438,6 +560,8 @@ form.woocommerce-cart-form {
     margin-top: 5px;
 }
 
+/* Loader */
+
 .rcn-child-cart-loading-screen {
     display: none;
 }
@@ -456,15 +580,17 @@ form.woocommerce-cart-form {
     background-color: #ffffff63;
 }
 
+/* Empty cart styles */
+
 .rcn-child-cart-empty-screen {
-    background: #F9F9F9;
+    background: #f9f9f9;
     text-align: center;
     padding: 100px;
     border-radius: 12px;
 }
 
 .rcn-child-cart-empty-screen p {
-    color: #4A4747;
+    color: #4a4747;
     margin-top: 20px;
     font-size: 16px;
     font-style: normal;
@@ -476,28 +602,9 @@ form.woocommerce-cart-form {
     display: none;
 }
 
-@media  (max-width: 675px) {
-    .woocommerce {
-        margin-top: 10px;
-        margin-bottom: 40px;
-    }
-
-    .rcn-child-cart-header {
-        padding: 10px;
-        margin-bottom: 0px;
-    }
-
+@media (max-width: 675px) {
     .woocommerce-notices-wrapper {
         margin: 0px 10px;
-    }
-
-    .rcn-child-cart-coupon-wrapper {
-        padding: 10px 20px;
-        box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.25);
-    }
-
-    .rcn-child-cart-coupon-wrapper p {
-        font-size: 12px;
     }
 
     .rcn-child-cart-item {
@@ -508,7 +615,7 @@ form.woocommerce-cart-form {
         display: block;
         margin-top: 8px;
     }
-    
+
     .rcn-child-cart-qty {
         display: none;
     }
@@ -524,38 +631,6 @@ form.woocommerce-cart-form {
 
     .rcn-child-cart-price-qty {
         display: block;
-    }
-
-    .rcn-child-cart-totals {
-        width: 100% !important;
-        margin-bottom: 0px !important;
-        border-radius: 0px !important;
-        margin-top: 50px;
-    }
-
-    .rcn-child-cart-coupon-wrapper {
-        border-top-right-radius: 0px;
-        border-top-left-radius: 0px;
-    }
-
-    .rcn-child-cart-total-primary-title {
-        display: none;
-    }
-
-    .rcn-child-proceed-to-checkout-btn {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-
-    .rcn-child-proceed-to-checkout-btn a {
-        width: 100%;
-        margin-bottom: 0px !important;
-    }
-
-    form.woocommerce-cart-form {
-        margin-right: 0px;
-        padding: 0px 10px;
-        width: 100%;
     }
 
     .rcn-child-cart-item-thumbnail img {
@@ -578,5 +653,17 @@ form.woocommerce-cart-form {
 
     .woocommerce-cart .cart-collaterals .cart_totals {
         border: 0px;
+    }
+}
+
+.woocommerce-cart table.shop_table .woocommerce-Price-amount {
+    font-weight: 500;
+}
+
+@media screen and (max-width: 921px) {
+    .woocommerce table.shop_table_responsive tr td::before, .woocommerce-page table.shop_table_responsive tr td::before {
+        content: attr(data-title) ": ";
+        font-weight: 500;
+        float: left;
     }
 }
