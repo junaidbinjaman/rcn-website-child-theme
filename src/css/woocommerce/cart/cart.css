@@ -153,13 +153,6 @@ Cart total styles
     width: 394px !important;
 }
 
-/* @media (min-width: 767px) and (max-width: 1024px) {
-    .rcn-child-cart-totals table {
-        width: 600px !important;
-        margin: auto !important;
-    }
-} */
-
 @media (max-width: 1024px) {
     .rcn-child-cart-totals {
         width: 100% !important;
@@ -365,11 +358,6 @@ Product listing items
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
-
-    /* .rcn-child-proceed-to-checkout-btn a {
-        width: 570px;
-        margin-bottom: 0px !important;
-    } */
 }
 
 .woocommerce-js ul#shipping_method .amount {
