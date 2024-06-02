@@ -66,6 +66,15 @@
     }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .woocommerce {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 /* ===================
 Cart header
 ====================== */
@@ -84,7 +93,9 @@ Cart header
 
 @media (max-width: 1024px) and (min-width: 767px) {
     .rcn-child-cart-header {
-        padding: 20px;
+        width: 665px;
+        padding: 0px;
+        padding-top: 20px;
         margin-bottom: 0px;
     }
 }
@@ -155,7 +166,7 @@ Cart total styles
 
 @media (max-width: 1024px) {
     .rcn-child-cart-totals {
-        width: 100% !important;
+        width: 100vw !important;
         margin-bottom: 0px !important;
         border-radius: 0px !important;
         border: 0px !important;
@@ -264,6 +275,12 @@ Cart total styles
     padding: 0px 20px !important;
 }
 
+@media (min-width: 767px) and (max-width: 1024px) {
+    .rcn-child-cart-totals table {
+        padding: 0px 0px !important;
+    }
+}
+
 .woocommerce-cart .cart-collaterals .cart_totals tr th,
 .woocommerce-cart .cart-collaterals .cart_totals tr td {
     border: none;
@@ -303,6 +320,13 @@ Product listing items
 
 .rcn-child-shop-table a.woocommerce-remove-coupon {
     display: none;
+}
+
+@media (min-width: 767px) and (max-width: 1024px) {
+    .rcn-child-shop-table {
+        width: 660px !important;
+        margin: auto !important;
+    }
 }
 
 .rcn-child-tax-total th,
@@ -347,16 +371,26 @@ Product listing items
 }
 
 @media (max-width: 767px) {
+    .rcn-child-proceed-to-checkout-btn {
+        padding: 10px 20px !important;
+    }
+
     .rcn-child-proceed-to-checkout-btn a {
         width: 100%;
         margin-bottom: 0px !important;
+        padding: 0px 20px;
     }
 }
 
-@media (max-width: 1024px) {
+@media  (min-width: 768px) and (max-width: 1024px) {
     .rcn-child-proceed-to-checkout-btn {
         padding-left: 20px !important;
         padding-right: 20px !important;
+    }
+
+    .rcn-child-proceed-to-checkout-btn a {
+        margin-bottom: 0px !important;
+        width: 660px;
     }
 }
 
@@ -499,8 +533,7 @@ form.woocommerce-cart-form {
 
 @media (min-width: 767px) and (max-width: 1024px) {
     .woocommerce-cart-form {
-        margin-right: 0px;
-        padding: 0px 20px;
+        margin-right: 0px !important;
     }
 }
 
