@@ -428,10 +428,7 @@ add_action( 'init', 'init_hook_callback' );
 
 function foobar() {
 	if ( is_admin() ) return;
-
-	echo '<pre style="color: black">';
-	var_dump( wc_get_product( 14900 )->get_stock_quantity() );
-	echo '</pre>';
+	$product = wc_get_product( 14900 );
 }
 
-// add_action( 'woocommerce_cart_loaded_from_session', 'foobar' );
+// add_action( 'init', 'foobar' );

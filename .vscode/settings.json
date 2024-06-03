@@ -16,6 +16,8 @@
         "phpcs",
         "unslash",
         "woocommerce",
+        "wpautop",
+        "wptexturize",
         "yourtheme"
     ],
 
