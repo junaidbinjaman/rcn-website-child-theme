@@ -428,7 +428,10 @@ add_action( 'init', 'init_hook_callback' );
 
 function foobar() {
 	if ( is_admin() ) return;
-	$product = wc_get_product( 14900 );
+	
+	echo '<pre>';
+	var_dump( get_permalink( wc_get_page_id( 'myaccount' ) ) );
+	echo '</pre>';
 }
 
 // add_action( 'init', 'foobar' );

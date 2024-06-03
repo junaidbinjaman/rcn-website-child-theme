@@ -20,7 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$jd_rcn_order_date = date_create( $order->get_date_created() );
+$jd_rcn_order_date            = date_create( $order->get_date_created() );
+$rcn_child_myaccount_page_uri = get_permalink( wc_get_page_id( 'myaccount' ) );
 
 // Check if discount and shipping are applicable.
 $jd_rcn_discount          = $order->get_discount_total();
@@ -209,7 +210,7 @@ if ( $jd_rcn_shipping < 1 ) {
 							?>
 							<tr>
 								<td style="
-										color: #000;
+									color: #000;
 									line-height: 17px;
 									padding: 06px 28px 06px 28px;
 									text-align: left;
@@ -225,7 +226,7 @@ if ( $jd_rcn_shipping < 1 ) {
 									text-align: left;
 									font-weight: 500;
 									font-size: 14px;
-										border-top: 0;
+									border-top: 0;
 								">
 									<?php echo esc_html( $item->get_quantity() ); ?>
 								</td>
@@ -239,7 +240,7 @@ if ( $jd_rcn_shipping < 1 ) {
 								">
 									<?php
 									$product = $item->get_product();
-									echo wc_price( $product->get_price() ) //phpcs:ignore
+									echo wc_price( $product->get_price() ); //phpcs:ignore
 									?>
 								</td>
 								<td style="
@@ -250,7 +251,7 @@ if ( $jd_rcn_shipping < 1 ) {
 									font-size: 14px;
 									border-top: 0
 								">
-									$<?php echo esc_html( $item->get_subtotal() ); ?>
+									<?php echo wc_price( $item->get_subtotal() ); //phpcs:ignore ?>
 								</td>
 							</tr>
 						<?php endforeach; ?>
@@ -307,7 +308,7 @@ if ( $jd_rcn_shipping < 1 ) {
 									color:#000;
 									font-family:Lato,Helvetica,Roboto,sans-serif
 								">
-									$<?php echo esc_html( $order->get_subtotal() ); ?>
+									<?php echo wc_price( $order->get_subtotal() ); //phpcs:ignore ?>
 								</p>
 							</td>
 						</tr>
@@ -372,7 +373,7 @@ if ( $jd_rcn_shipping < 1 ) {
 									color:#000;
 									font-family:Lato,Helvetica,Roboto,sans-serif
 								">
-									$<?php echo esc_html( $order->get_total_tax() ); ?>
+									<?php echo wc_price( $order->get_total_tax() ); //phpcs:ignore ?>
 								</p>
 							</td>
 						</tr>
@@ -418,7 +419,7 @@ if ( $jd_rcn_shipping < 1 ) {
 									color:#000;
 									font-family:Lato,Helvetica,Roboto,sans-serif
 								">
-									$<?php echo esc_html( $order->get_shipping_total() ); ?>.00
+									<?php echo wc_price( $order->get_shipping_total() ); //phpcs:ignore ?>
 								</p>
 							</td>
 						</tr>
@@ -462,7 +463,7 @@ if ( $jd_rcn_shipping < 1 ) {
 									color:#000;
 									font-family:Lato,Helvetica,Roboto,sans-serif
 								">
-									-<?php echo esc_html( $order->get_discount_to_display() ); ?>
+									-<?php echo wc_price( $order->get_discount_to_display() ); //phpcs:ignore ?>
 								</p>
 							</td>
 						</tr>
@@ -528,7 +529,7 @@ if ( $jd_rcn_shipping < 1 ) {
 						color: #fff;
 						background-color: #0040e0;
 				">
-					<a href="#" style="text-decoration: none; color: #fff; text-transform: uppercase"> Visit your account <a>
+					<a href="<?php echo esc_attr( $rcn_child_myaccount_page_uri ); ?>" style="text-decoration: none; color: #fff; text-transform: uppercase"> Visit your account <a>
 				</button>
 			</div>
 		</div>
