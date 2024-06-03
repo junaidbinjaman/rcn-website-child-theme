@@ -21,7 +21,7 @@ $shop_page_id        = get_option( 'woocommerce_shop_page_id' );
 $shop_page_permalink = get_the_permalink( $shop_page_id );
 ?>
 
-<div>
+<div class="rcn-child-empty-cart-header">
 	<div class="rcn-child-cart-continue-shopping-btn">
 		<a href="<?php echo esc_html( $shop_page_permalink ); ?>" class="rcn-child-cart-continue-shopping-btn">
 			<i class="eicon-angle-left"></i>
@@ -35,5 +35,5 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 
 <div class="rcn-child-cart-empty-screen">
 	<img src="<?php echo esc_attr( get_stylesheet_directory_uri() . '/img/empty-cart-icon.png' ); ?>" width="68" height="68" alt="df">
-	<p>No item in your cart</p>
+	<p>No items in your cart</p>
 </div>
