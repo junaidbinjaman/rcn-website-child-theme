@@ -20,22 +20,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$jd_rcn_order_date            = date_create( $order->get_date_created() );
+$rcn_child_order_date         = date_create( $order->get_date_created() );
 $rcn_child_myaccount_page_uri = get_permalink( wc_get_page_id( 'myaccount' ) );
 
 // Check if discount and shipping are applicable.
-$jd_rcn_discount          = $order->get_discount_total();
-$jd_rcn_hide_discount_row = '';
+$rcn_child_discount          = $order->get_discount_total();
+$rcn_child_hide_discount_row = '';
 
-if ( $jd_rcn_discount < 1 ) {
-	$jd_rcn_hide_discount_row = 'display: none';
+if ( $rcn_child_discount < 1 ) {
+	$rcn_child_hide_discount_row = 'display: none';
 }
 
-$jd_rcn_shipping          = $order->get_shipping_total();
-$jd_rcn_hide_shipping_row = '';
+$rcn_child_shipping          = $order->get_shipping_total();
+$rcn_child_hide_shipping_row = '';
 
-if ( $jd_rcn_shipping < 1 ) {
-	$jd_rcn_hide_shipping_row = 'display: none';
+if ( $rcn_child_shipping < 1 ) {
+	$rcn_child_hide_shipping_row = 'display: none';
 }
 
 ?>
@@ -79,7 +79,8 @@ if ( $jd_rcn_shipping < 1 ) {
 				<h3 style="
 					text-align: center;
 					font-size: 28px;
-					color: #000;
+					color: #444E5A;
+					font-family: 'Montserrat', sans-serif;
 				">PURCHASE NOTE</h3>
 				<!-- Order ID -->
 				<p style="
@@ -87,6 +88,7 @@ if ( $jd_rcn_shipping < 1 ) {
 					font-weight: 800;
 					color: #000;
 					margin-top: -8px;
+					font-family: 'Montserrat', sans-serif;
 				">
 					Receipt #<?php echo esc_html( $order->get_id() ); ?>
 				</p>
@@ -100,13 +102,14 @@ if ( $jd_rcn_shipping < 1 ) {
 							<td style="vertical-align:top; width:200px" valign="top">
 								<p style="
 									font-size:12px;
-									font-weight:500;
+									font-weight:bold;
 									line-height:17px;
 									margin-bottom:0px;
 									margin-top:0;
 									margin-right:0;
 									margin-left:0;
-									color: #000;
+									color: #72809c;
+									font-family: 'Montserrat', sans-serif;
 								">Amount Paid</p>
 								<p style="
 									font-size:14px;
@@ -116,7 +119,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									margin-top:0;
 									margin-right:0;
 									margin-left:0;
-									color: #000;
+									color: #444e5a;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo $order->get_formatted_order_total(); //phpcs:ignore ?>
 								</p>
@@ -124,13 +128,14 @@ if ( $jd_rcn_shipping < 1 ) {
 							<td style="vertical-align:top; width:200px" valign="top">
 								<p style="
 									font-size:12px;
-									font-weight:500;
+									font-weight:bold;
 									line-height:17px;
 									margin-bottom:0px;
 									margin-top:0;
 									margin-right:0;
 									margin-left:0;
-									color: #000;
+									color: #72809c;
+									font-family: 'Montserrat', sans-serif;
 								">Receipt Date</p>
 								<p style="
 									font-size:14px;
@@ -140,21 +145,23 @@ if ( $jd_rcn_shipping < 1 ) {
 									margin-top:0;
 									margin-right:0;
 									margin-left:0;
-									color: #000;
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
-									<?php echo esc_html( date_format( $jd_rcn_order_date, 'm/d/Y' ) ); ?>
+									<?php echo esc_html( date_format( $rcn_child_order_date, 'm/d/Y' ) ); ?>
 								</p>
 							</td>
 							<td style="vertical-align:top; width:200px" valign="top">
 								<p style="
 									font-size:12px;
-									font-weight:500;
+									font-weight:bold;
 									line-height:17px;
 									margin-bottom:0px;
 									margin-top:0;
 									margin-right:0;
 									margin-left:0;
-									color: #000;
+									color: #72809c;
+									font-family: 'Montserrat', sans-serif;
 								">Payment Method</p>
 								<p style="
 									font-size:14px;
@@ -164,7 +171,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									margin-top:0;
 									margin-right:0;
 									margin-left:0;
-									color: #000;
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo esc_html( $order->get_payment_method_title() ); ?>
 								</p>
@@ -194,10 +202,27 @@ if ( $jd_rcn_shipping < 1 ) {
 								font-size: 14px;
 								border-top: 0;
 								width: 58%;
+								color: #444E5A;
+								font-family: 'Montserrat', sans-serif;
 							">Product Name</th>
-							<th style="border-bottom: 1px solid #d2d4de; width: 14%">Quantity</th>
-							<th style="border-bottom: 1px solid #d2d4de; width: 14%">Price</th>
-							<th style="border-bottom: 1px solid #d2d4de; width: 14%">Line Total</th>
+							<th style="
+								border-bottom: 1px solid #d2d4de;
+								width: 14%;
+								color: #444E5A;
+								font-family: 'Montserrat', sans-serif;
+							">Quantity</th>
+							<th style="
+								border-bottom: 1px solid #d2d4de;
+								width: 14%;
+								color: #444E5A;
+								font-family: 'Montserrat', sans-serif;
+							">Price</th>
+							<th style="
+								border-bottom: 1px solid #d2d4de;
+								width: 14%;
+								color: #444E5A;
+								font-family: 'Montserrat', sans-serif;
+							">Line Total</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -217,6 +242,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									font-weight: 500;
 									font-size: 14px;
 									border-top: 0;
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo esc_html( $item->get_name() ); ?>
 								</td>
@@ -227,6 +254,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									font-weight: 500;
 									font-size: 14px;
 									border-top: 0;
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo esc_html( $item->get_quantity() ); ?>
 								</td>
@@ -237,6 +266,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									font-weight: 500;
 									font-size: 14px;
 									border-top: 0;
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php
 									$product = $item->get_product();
@@ -249,7 +280,9 @@ if ( $jd_rcn_shipping < 1 ) {
 									text-align: left;
 									font-weight: 500;
 									font-size: 14px;
-									border-top: 0
+									border-top: 0;
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo wc_price( $item->get_subtotal() ); //phpcs:ignore ?>
 								</td>
@@ -267,7 +300,11 @@ if ( $jd_rcn_shipping < 1 ) {
 						border-top-left-radius:4px;
 						border-bottom-right-radius:0;
 						border-bottom-left-radius:0;
-						border-collapse:separate;" cellspacing="0" cellpadding="0" width="100%">
+						border-collapse:separate;"
+						cellspacing="0"
+						cellpadding="0"
+						width="100%"
+				>
 					<tbody>
 						<tr>
 							<td style="
@@ -277,7 +314,8 @@ if ( $jd_rcn_shipping < 1 ) {
 								text-align:left;
 								font-weight:900;
 								font-size:14px;
-								border-top:0;" align="left">
+								border-top:0;
+								" align="left">
 								<p style="
 									margin-top:0;
 									margin-bottom:0;
@@ -286,8 +324,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">Subtotal</p>
 							</td>
 							<td style="
@@ -305,8 +343,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo wc_price( $order->get_subtotal() ); //phpcs:ignore ?>
 								</p>
@@ -350,8 +388,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">Sales Tax</p>
 							</td>
 							<td style="
@@ -370,14 +408,14 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo wc_price( $order->get_total_tax() ); //phpcs:ignore ?>
 								</p>
 							</td>
 						</tr>
-						<tr style="<?php echo esc_attr( $jd_rcn_hide_shipping_row ); ?>"> <!-- Hide if shipping is not applicable -->
+						<tr style="<?php echo esc_attr( $rcn_child_hide_shipping_row ); ?>"> <!-- Hide if shipping is not applicable -->
 							<td style="
 								color:#000;
 								line-height:20px;
@@ -394,8 +432,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									Shipping Cost
 								</p>
@@ -416,14 +454,14 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo wc_price( $order->get_shipping_total() ); //phpcs:ignore ?>
 								</p>
 							</td>
 						</tr>
-						<tr style="<?php echo esc_attr( $jd_rcn_hide_discount_row ); ?>"> <!-- Hide is discount is not applicable -->
+						<tr style="<?php echo esc_attr( $rcn_child_hide_discount_row ); ?>"> <!-- Hide is discount is not applicable -->
 							<td style="
 								color:#000;
 								line-height:20px;
@@ -440,8 +478,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">Total Discount</p>
 							</td>
 							<td style="
@@ -460,8 +498,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									-<?php echo wc_price( $order->get_discount_to_display() ); //phpcs:ignore ?>
 								</p>
@@ -484,8 +522,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">Amount Paid</p>
 							</td>
 							<td style="
@@ -503,8 +541,8 @@ if ( $jd_rcn_shipping < 1 ) {
 									line-height:20px;
 									margin-right:0;
 									margin-left:0;
-									color:#000;
-									font-family:Lato,Helvetica,Roboto,sans-serif
+									color: #444E5A;
+									font-family: 'Montserrat', sans-serif;
 								">
 									<?php echo $order->get_formatted_order_total(); //phpcs:ignore ?>
 								</p>
@@ -526,8 +564,9 @@ if ( $jd_rcn_shipping < 1 ) {
 						padding-left: 40px;
 						font-weight: 600;
 						font-size: 14px;
-						color: #fff;
-						background-color: #0040e0;
+						background: #006CFA;
+						color: #444E5A;
+						font-family: 'Montserrat', sans-serif;
 				">
 					<a href="<?php echo esc_attr( $rcn_child_myaccount_page_uri ); ?>" style="text-decoration: none; color: #fff; text-transform: uppercase"> Visit your account <a>
 				</button>
