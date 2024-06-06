@@ -41,7 +41,7 @@ $rcn_child_hide_shipping_row = $rcn_child_shipping < 1 ? 'display: none;' : '';
 								<a href="https://realitycapturenetwork.com" target="_blank">
 									<img src="https://realitycapturenetwork.com/wp-content/uploads/2023/01/RCN-Blue-Rectangle.png" alt="RCN Logo" width="200" style="border-radius:6px; display:block;">
 								</a>
-								<h3 style="font-size: 28px; color: #444E5A; font-family: 'Montserrat', sans-serif; margin: 20px 0;">PURCHASE NOTE</h3>
+								<h3 style="font-size: 28px; color: #444E5A; font-family: 'Montserrat', sans-serif; margin: 20px 0; text-align: center;">PURCHASE NOTE</h3>
 								<p style="font-size: 15px; font-weight: 800; color: #000; font-family: 'Montserrat', sans-serif; margin: -8px 0 0;">Receipt #<?php echo esc_html( $order->get_id() ); ?></p>
 							</td>
 						</tr>
@@ -70,10 +70,10 @@ $rcn_child_hide_shipping_row = $rcn_child_shipping < 1 ? 'display: none;' : '';
 								<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #d2d4de; text-align: left; border-radius: 4px; border-spacing: 0;">
 									<thead>
 										<tr>
-											<th style="padding: 10px 28px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Product Name</th>
-											<th style="padding: 10px 28px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Quantity</th>
-											<th style="padding: 10px 28px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Price</th>
-											<th style="padding: 10px 28px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Line Total</th>
+											<th style="padding: 10px 20px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Product Name</th>
+											<th style="padding: 10px 0px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Qty</th>
+											<th style="padding: 10px 10px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Price</th>
+											<th style="padding: 10px 10px; border-bottom: 1px solid #d2d4de; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: left;">Line Total</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -83,10 +83,10 @@ $rcn_child_hide_shipping_row = $rcn_child_shipping < 1 ? 'display: none;' : '';
 											$product = $item->get_product();
 											?>
 										<tr>
-											<td style="padding: 10px 28px; color: #444E5A; font-family: 'Montserrat', sans-serif;"><?php echo esc_html( $item->get_name() ); ?></td>
-											<td style="padding: 10px 28px; color: #444E5A; font-family: 'Montserrat', sans-serif;"><?php echo esc_html( $item->get_quantity() ); ?></td>
-											<td style="padding: 10px 28px; color: #444E5A; font-family: 'Montserrat', sans-serif;"><?php echo wc_price( $product->get_price() ); //phpcs:ignored ?></td>
-											<td style="padding: 10px 28px; color: #444E5A; font-family: 'Montserrat', sans-serif;"><?php echo wc_price( $item->get_subtotal() ); //phpcs:ignored ?></td>
+											<td style="padding: 10px 20px; color: #444E5A; font-family: 'Montserrat', sans-serif;"><?php echo esc_html( $item->get_name() ); ?></td>
+											<td style="padding: 10px 0px; color: #444E5A; font-family: 'Montserrat', sans-serif; text-align: center;"><?php echo esc_html( $item->get_quantity() ); ?></td>
+											<td style="padding: 10px 10px; color: #444E5A; font-family: 'Montserrat', sans-serif;"><?php echo wc_price( $product->get_price() ); //phpcs:ignored ?></td>
+											<td style="padding: 10px 10px; color: #444E5A; font-family: 'Montserrat', sans-serif;"><?php echo wc_price( $item->get_subtotal() ); //phpcs:ignored ?></td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -98,24 +98,24 @@ $rcn_child_hide_shipping_row = $rcn_child_shipping < 1 ? 'display: none;' : '';
 								<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #d2d4de; border-radius: 4px;">
 									<tbody>
 										<tr>
-											<td style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Subtotal</td>
-											<td align="right" style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_subtotal() ); //phpcs:ignored ?></td>
+											<td style="padding: 10px 20px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Subtotal</td>
+											<td align="right" style="padding: 10px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_subtotal() ); //phpcs:ignored ?></td>
 										</tr>
 										<tr>
-											<td style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Sales Tax</td>
-											<td align="right" style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_total_tax() ); //phpcs:ignored ?></td>
+											<td style="padding: 10px 20px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Sales Tax</td>
+											<td align="right" style="padding: 10px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_total_tax() ); //phpcs:ignored ?></td>
 										</tr>
 										<tr style="<?php echo esc_attr( $rcn_child_hide_shipping_row ); ?>">
-											<td style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Shipping Cost</td>
-											<td align="right" style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_shipping_total() ); //phpcs:ignored ?></td>
+											<td style="padding: 10px 20px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Shipping Cost</td>
+											<td align="right" style="padding: 10px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_shipping_total() ); //phpcs:ignored ?></td>
 										</tr>
 										<tr style="<?php echo esc_attr( $rcn_child_hide_discount_row ); ?>">
-											<td style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Discount</td>
-											<td align="right" style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_discount_total() ); //phpcs:ignored ?></td>
+											<td style="padding: 10px 20px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;">Discount</td>
+											<td align="right" style="padding: 10px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 500;"><?php echo wc_price( $order->get_discount_total() ); //phpcs:ignored ?></td>
 										</tr>
 										<tr>
-											<td style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 800;">Total Amount Paid</td>
-											<td align="right" style="padding: 20px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 800;"><?php echo wc_price( $order->get_total() ); //phpcs:ignored ?></td>
+											<td style="padding: 10px 20px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 800;">Total Amount Paid</td>
+											<td align="right" style="padding: 10px 28px; font-size: 14px; color: #444E5A; font-family: 'Montserrat', sans-serif; font-weight: 800;"><?php echo wc_price( $order->get_total() ); //phpcs:ignored ?></td>
 										</tr>
 									</tbody>
 								</table>
@@ -123,14 +123,14 @@ $rcn_child_hide_shipping_row = $rcn_child_shipping < 1 ? 'display: none;' : '';
 						</tr>
 						<tr>
 							<td align="center" style="padding: 20px;">
-								<a href="<?php echo esc_url( $rcn_child_myaccount_page_uri ); ?>" style="background-color: #ff5a00; color: white; font-family: 'Montserrat', sans-serif; font-weight: 600; padding: 10px 24px; border-radius: 4px; text-decoration: none; font-size: 14px;">View Your Account</a>
+								<a href="<?php echo esc_url( $rcn_child_myaccount_page_uri ); ?>" style="background-color: #006CFA; color: white; font-family: 'Montserrat', sans-serif; font-weight: 600; padding: 10px 24px; border-radius: 4px; text-decoration: none; font-size: 14px;">View Your Account</a>
 							</td>
 						</tr>
 						<tr>
 							<td align="center" style="padding: 20px; color: #98a0a6; font-family: 'Montserrat', sans-serif; font-size: 11px;">
-								&copy; 2023 RCN INC. All rights reserved.
+								&copy; 2024 RCN INC. All rights reserved.
 								<br>338 S Sharon Amity Rd. #238, Charlotte, NC 28211
-								<br>If you have any questions, feel free to contact us at <a href="mailto:info@realitycapturenetwork.com" style="color: #98a0a6; text-decoration: underline;">info@realitycapturenetwork.com</a>
+								<br>If you have any questions, feel free to contact us at <a href="mailto:info@realitycapturenetwork.com" style="color: #98a0a6; text-decoration: underline;">team@realitycapturenetwork.com</a>
 							</td>
 						</tr>
 					</table>
