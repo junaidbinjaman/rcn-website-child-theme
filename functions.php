@@ -424,14 +424,34 @@ function init_hook_callback() {
 
 add_action( 'init', 'init_hook_callback' );
 
-//phpcs:disabled
 
-function foobar() {
-	if ( is_admin() ) return;
-	
-	echo '<pre>';
-	var_dump( get_permalink( wc_get_page_id( 'myaccount' ) ) );
-	echo '</pre>';
+/**
+ * Removes the shipping method title in wc cart total box
+ *
+ * @param string $label The shipping label.
+ * @param object $method The shipping method object.
+ * @return string
+ */
+function foobar( $label, $method ) {
+	$label     = $method->get_label();
+	$has_cost  = 0 < $method->cost;
+	$hide_cost = ! $has_cost && in_array( $method->get_method_id(), array( 'free_shipping', 'local_pickup' ), true );
+
+	if ( $has_cost && ! $hide_cost ) {
+		if ( WC()->cart->display_prices_including_tax() ) {
+			$label .= ': ' . wc_price( $method->cost + $method->get_shipping_tax() );
+			if ( $method->get_shipping_tax() > 0 && ! wc_prices_include_tax() ) {
+				$label .= ' <small class="tax_label">' . WC()->countries->inc_tax_or_vat() . '</small>';
+			}
+		} else {
+			$label .= ': ' . wc_price( $method->cost );
+			if ( $method->get_shipping_tax() > 0 && wc_prices_include_tax() ) {
+				$label .= ' <small class="tax_label">' . WC()->countries->ex_tax_or_vat() . '</small>';
+			}
+		}
+	}
+
+	return wc_price( $method->cost );
 }
 
-// add_action( 'init', 'foobar' );
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'foobar', 10, 2 );

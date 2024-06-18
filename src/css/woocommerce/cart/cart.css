@@ -521,6 +521,7 @@ Product listing items
 form.woocommerce-cart-form {
     float: left;
     margin-right: 50px;
+    margin-bottom: 50px;
 }
 
 @media (max-width: 767px) {

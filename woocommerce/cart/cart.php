@@ -25,7 +25,7 @@ $shop_page_permalink = get_the_permalink( $shop_page_id );
 	<div class="rcn-child-cart-continue-shopping-btn">
 		<a href="<?php echo esc_html( $shop_page_permalink ); ?>" class="rcn-child-cart-continue-shopping-btn">
 			<i class="eicon-angle-left"></i>
-			<span>Continue Shopping</span>
+			<span>Back</span>
 		</a>
 	</div>
 	<hr class="rcn-child-cart-header-divider" />

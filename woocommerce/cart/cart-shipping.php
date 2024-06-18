@@ -25,12 +25,11 @@ $show_shipping_calculator = ! empty( $show_shipping_calculator );
 $calculator_text          = '';
 ?>
 <tr class="woocommerce-shipping-totals shipping rcn-child-cart-shipping">
-	<th><?php echo wp_kses_post( $package_name ); ?></th>
-	<td data-title="<?php echo esc_attr( $package_name ); ?>">
+	<th  style="padding-bottom: 7px"><?php echo wp_kses_post( $package_name ); ?></th>
+	<td style="padding-bottom: 7px" data-title="<?php echo esc_attr( $package_name ); ?>">
 		<?php if ( ! empty( $available_methods ) && is_array( $available_methods ) ) : ?>
-			<ul id="shipping_method" class="woocommerce-shipping-methods">
 				<?php foreach ( $available_methods as $method ) : ?>
-					<li>
+					<li style="list-style: none;">
 						<?php
 						if ( 1 < count( $available_methods ) ) {
 							printf( '<input type="radio" name="shipping_method[%1$d]" data-index="%1$d" id="shipping_method_%1$d_%2$s" value="%3$s" class="shipping_method" %4$s />', $index, esc_attr( sanitize_title( $method->id ) ), esc_attr( $method->id ), checked( $method->id, $chosen_method, false ) ); // phpcs:ignore;
@@ -42,7 +41,6 @@ $calculator_text          = '';
 						?>
 					</li>
 				<?php endforeach; ?>
-			</ul>
 			<?php
 		elseif ( ! $has_calculated_shipping || ! $formatted_destination ) :
 			if ( is_cart() && 'no' === get_option( 'woocommerce_enable_shipping_calc' ) ) {
